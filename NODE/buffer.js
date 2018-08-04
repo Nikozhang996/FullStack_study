@@ -26,36 +26,3 @@ Buffer.myConcat = function (list, totalLength) {
 
 // isBuffer
 
-function fn(start, end, step) {
-    let startMin = start.split(':')[0],
-        startSec = start.split(':')[1],
-        endMin = end.split(':')[0],
-        endSec = end.split(':')[1],
-        stepMin = step.split(':')[0],
-        stepSec = step.split(':')[1];
-
-    let minTemp = parseInt(startMin, 10),
-        secTemp = parseInt(startSec, 10);
-
-    let tempArr = [];
-
-    let flag = 0;
-
-    while (parseInt(minTemp, 10) < parseInt(endMin, 10)) {
-        minTemp += parseInt(stepMin, 10);
-        secTemp += parseInt(stepSec, 10);
-        if (secTemp > 60) {
-            minTemp++
-            secTemp-=60;
-        }
-        tempArr.push(`${minTemp}:${secTemp}`)
-    }
-
-
-
-
-    return tempArr;
-}
-
-
-console.log(fn('08:00', '22:00', '00:30'));

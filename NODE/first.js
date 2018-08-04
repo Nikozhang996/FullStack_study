@@ -11,13 +11,7 @@ setImmediate(function () {
 })
 
 setTimeout(function () {
-<<<<<<< HEAD
     console.log('setTimeout');        
 })
 }
-=======
-    console.log('setTimeout');
-})
-
- */
->>>>>>> f9f4ee580778a633a95ef30eadf719211343e710
+*/
