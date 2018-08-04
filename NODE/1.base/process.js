@@ -34,7 +34,7 @@ setTimeout(() => {
 }, 1000);
  */
 
-
+// 执行时间不定，需要看执行栈启动时间与定时器延迟时间，执行栈=>settimeout=>IO操作库
 setImmediate(function () {
     console.log('immediate');
 })
