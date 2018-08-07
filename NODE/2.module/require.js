@@ -19,17 +19,17 @@ function Module(id) {
 
 // exports = module.exports
 Module.wrapper = [
-    '(function(exports,module,require){}',
+    '(function(exports,module,require){',
     '\n})'
 ];
 Module.wrap = function (script) {
-    const [start, end] = this.wrapper;
-    return `${start+script+end}`;
+    const [start, end] = Module.wrapper;
+    return start + script + end;
 };
 Module._extensions = {
     '.js' (module) {
         const str = fs.readFileSync(module.id, 'utf-8'); // 读取文件内容
-        const fnStr = this.wrap(str); // 返回的是函数字符串
+        const fnStr = Module.wrap(str); // 返回的是函数字符串
         const hanlder = vm.runInThisContext(fnStr); // 让产生的函数执行
         hanlder.call(module.exports, module.exports, module, req); // 会在内部把结果赋值到exports属性上
     },
@@ -65,9 +65,7 @@ Module._resolveFilename = function (relativePath) {
 };
 Module._cache = {};
 Module.prototype.load = function (filename) {
-    console.log(path.extname(filename));
-
-    let extension = path.extname(filename);
+    let extension = path.extname(filename); // 获取文件后缀名
     Module._extensions[extension](this);
 }
 
@@ -90,5 +88,5 @@ function req(p) {
     }
 }
 
-let test = req('./test.txt');
+let test = req('./test.js');
 console.log(test);
