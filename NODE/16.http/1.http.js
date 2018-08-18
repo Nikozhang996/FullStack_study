@@ -16,10 +16,10 @@ server.on('request', (req, res) => {
 
     req.on('end', function () {
         console.log('end');
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.sendDate = true;
-        res.end('end');
+        res.statusCode = 200; // 返回响应码
+        res.setHeader('Content-Type', 'text/html'); // 设置响应头
+        res.sendDate = true; // 是否返回服务器时间
+        res.end('end'); //返回响应内容
     });
 })
 
