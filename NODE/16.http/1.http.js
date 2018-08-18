@@ -2,6 +2,7 @@ const http = require('http');
 
 const server = http.createServer();
 
+let count = 0;
 
 server.on('request', (req, res) => {
     // req代表客户端请求，当客户端发数据过来后，才会触发on('data')事件
@@ -19,7 +20,7 @@ server.on('request', (req, res) => {
         res.statusCode = 200; // 返回响应码
         res.setHeader('Content-Type', 'text/html'); // 设置响应头
         res.sendDate = true; // 是否返回服务器时间
-        res.end('end'); //返回响应内容
+        res.end('end:' + count++); //返回响应内容
     });
 })
 

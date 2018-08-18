@@ -13,8 +13,8 @@ const opts = {
 
 const client = http.request(opts, res => {
     res.on('data', data => {
-        console.log(data.toString());
-    })
-})
+        console.log(`服务器返回${data.toString()}`);
+    });
+});
 
 client.end('a=1'); // 发送请求
