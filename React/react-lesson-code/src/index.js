@@ -1,39 +1,76 @@
-import React from 'react';
-import { render } from 'react-dom'
+import React, {Component } from 'react';
+import ReactDOM, {render} from 'react-dom'
 
-function Componment(props) {
-  const {title, content} = props;
-  console.log(title, content);
+class Clock extends Component {
+  state = {
+    count:0,
+    str: '当前时间是',
+    time: new Date().toLocaleString()
+  }
 
-  return (
-    <div>
-      <h3>{title},{content}</h3>
-    </div>
-  );
+  /* componentDidMount == Vue mounted */
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({
+        time: new Date().toLocaleString()
+      })
+    },1000)
+  }
+  /* 销毁组件 */
+  componentWillUnmount() { // 解绑事件和方法
+    clearInterval(this.timer);
+    console.log('销毁了组件')
+  }
+  /* 加法 */
+  onAdd=()=>{
+    console.log(this.state.count++)
+    this.setState({
+      count:this.state.count++
+    })
+  }
+  /* 减法 */
+  onLes=()=>{
+    this.setState({
+      count:this.state.count--
+    })
+  }
+  /* 删除 */
+  handleClick=()=>{
+    ReactDOM.unmountComponentAtNode(window.root)
+  }
+
+
+
+
+
+
+
+
+
+  /* 默认渲染组件时会调用render方法 */
+  render(){
+    return (
+      <div>
+        {this.state.count}，{this.state.str}：{this.state.time}    
+        <div>
+        <button onClick={this.onAdd}>+</button>
+        <button onClick={this.onLes}>-</button>
+        <button onClick={this.handleClick}>删除</button>
+        </div>
+      </div>
+    )
+  }
 }
 
-let bio = 'BIO';
-let carlos = '卡洛斯';
+const el = (
+  <Clock></Clock>
+)
 
+render(el, window.root);
 
-
-
-
-// render是有优化机制的 只更新数据有变化的
-function Clock(props) {
-  return <h3> 呵呵：<span>{props.time}</span></h3>
-}
-
-setInterval(() => {
-  render(<Clock time={new Date().toLocaleString()}/>, window.root);
-}, 1000);
 
 
 
 /*
-* 什么是组件，组件是干什么的
-* 组件的目的就是1：复用，2：方便维护，3：提高工作效率
-* react中组件的声明方式，函数声明，类声明。通常用类声明比较多
-* 组件的特点就是首字母大写
-* 函数声明组件的缺点有：没有this，没有状态，没有生命周期
-* */
+ * 使用类声明，class Clock extends Component
+ * */
