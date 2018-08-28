@@ -1,99 +1,71 @@
 import React, {Component } from 'react';
 import ReactDOM, {render} from 'react-dom'
-// React16.3 推出了新的声明周期
+import PropTypes from 'prop-types';
 
-class Counter extends Component {
+class Person extends Component{
+  /* 默认属性 */
   static defaultProps = {
-    a: 1
+    name: 'zjk',
+    age: 20
   };
-  state = {
-    num: 0
-  };
-
-  /* 构造函数 == created */
-  constructor(props) {
-    console.log('consturctor');
+  /* 状态 */
+  constructor() {
+    console.log('create');
     super();
   }
 
-  /* componentWillMount==mounted，react16.3中标识这个方法会被废弃，如有需要，可以在constructor中代替 */
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
-  /* componentWillUpdate */
-  componentWillUpdate() {
-    console.log('componentWillUpdate');
-  }
-
-  /* componentDidUpdate */
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-
-  onClick = (ev) => {
-    this.setState({
-      num: this.state.num += 1
-    })
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    gender:PropTypes.oneOf(['男','女']).isRequired,
+    hobby: PropTypes.arrayOf(PropTypes.string),
+    pos: PropTypes.shape({
+      x: PropTypes.number.isRequire,
+      y: PropTypes.number.isRequire
+    }),
+    salary(obj, key, p) { // 自己校验;
+      if (obj[key] > 5000) {
+        console.log('收入真高');
+      }
+    }
   };
+  componentWillUpdate() {
+    console.log('isUpdate');
+  }
 
   render() {
     console.log('render');
-    return (
-      <div>
-        <span>paran_child{this.state.num}</span>
-        <ChildCounter n={this.state.num} bol={true}/>
-        <button onClick={this.onClick}>+</button>
-      </div>
-    );
-  }
-
-  /* componentDidMount */
-  componentDidMount() {
-    console.log('componentDidMount');
-  }
-
-  /* componentWillUnmount */
-  componentWillUnmount() {
-    console.log('组件将要被卸载');
+    const {name, age,gender, hobby, pos, salary} = this.props;
+    return (<div>
+      <p>{name}：{age}：{gender}</p>
+      <ul>
+        {
+          hobby.map((item, index) => {
+            return (
+              <li key={index}>{item}</li>
+            );
+          })
+        }
+      </ul>
+      <p>{pos.x}：{pos.y}</p>
+      <span>{salary}</span>
+    </div>);
   }
 }
 
-class ChildCounter extends Component{
-  state = {
-    str:'child_counter'
-  };
-  componentWillMount(){
-    console.log('child-componentWillMount')
-  }
-
-  render() {
-    console.log('child-render');
-    return (
-      <div>child_counter{this.props.n}</div>
-    );
-  }
-
-  componentDidMount() {
-    console.log('child-componentDidMount')
-  }
-
-  /* shouldComponentUpdate 启动组件是否实时更新 */
-  shouldComponentUpdate() {
-    console.log('shouldComponentUpdate');
-    return true;
-  }
-
-  /* 接收到某个属性后 把这个属性变成了当前组件的状态 */
-  componentWillReceiveProps() { //第一次不执行 16.3中这个方法废弃了
-    console.log(this.state.str);
-  }
-}
-
-
-
+let obj = {
+  name: 'BIO卡洛斯',
+  age: 30,
+  gender: '男',
+  hobby: ['code', 'photoshop', 'swimming'],
+  pos: {
+    x: 344,
+    y: 833
+  },
+  salary: 8000
+};
 const el = (
-  <Counter></Counter>
+  //可以解构的方式传入props，也可以单个传入
+  <Person name={obj.name} gender={obj.gender} hobby={obj.hobby} pos={obj.pos}></Person>
 );
 
 render(el, window.root);
