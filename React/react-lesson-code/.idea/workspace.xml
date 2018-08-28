@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d105642-08b1-4077-a2fb-17d845c13145" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/life-cycle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/prop-type.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
@@ -21,8 +21,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
+            <state relative-caret-position="756">
+              <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -38,6 +38,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/prop-type.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
       </list>
     </option>
@@ -129,7 +130,7 @@
       <workItem from="1535390047645" duration="600000" />
       <workItem from="1535435763473" duration="3637000" />
       <workItem from="1535440104673" duration="13000" />
-      <workItem from="1535462392000" duration="2989000" />
+      <workItem from="1535462392000" duration="3571000" />
     </task>
     <task id="LOCAL-00001" summary="学习了react生命周期">
       <created>1535437050274</created>
@@ -145,11 +146,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535439201286</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="学习了react传参">
+      <created>1535465407461</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1535465407461</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12956000" />
+    <option name="totallyTimeSpent" value="13538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1018" y="0" width="1037" height="1128" extended-state="0" />
@@ -184,7 +192,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="学习了react生命周期" />
-    <option name="LAST_COMMIT_MESSAGE" value="学习了react生命周期" />
+    <MESSAGE value="学习了react传参" />
+    <option name="LAST_COMMIT_MESSAGE" value="学习了react传参" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -249,10 +258,20 @@
     <entry file="file://$PROJECT_DIR$/src/life-cycle.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/prop-type.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
+        <state relative-caret-position="756">
+          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
