@@ -1,0 +1,17 @@
+{
+  "code":0,
+  "users": [
+    {
+      "id": 1,
+      "avatar": "https://user-gold-cdn.xitu.io/2018/2/17/161a3828ea508b29?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1",
+      "username": "zfpx",
+      "content": "今天天气不错"
+    },
+    {
+      "id": 2,
+      "avatar": "https://user-gold-cdn.xitu.io/2018/2/17/161a3828ea508b29?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1",
+      "username": "zfpx",
+      "content": "今天天气不错"
+    }
+  ]
+}

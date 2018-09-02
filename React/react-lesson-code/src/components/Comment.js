@@ -14,7 +14,7 @@ export default class Comment extends Component{
       <form onSubmit={this.handleSubmit}>
         <textarea name="text" id="text" cols="30" rows="10"></textarea>
         <button type='submit'>评论</button>
-      </form>);
-  )
-}
+      </form>
+    )
+  }
 }
