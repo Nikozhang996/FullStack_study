@@ -23,7 +23,9 @@ export default class ListItem extends Component {
 
                 <button
                   className="btn btn-danger"
-                  onClick={this.handleClick.bind(null, id)}
+                  // onClick={this.handleClick.bind(null, id)}
+                  // onClick={value.removeById.bind(null, id)}
+                  onClick={() => value.removeById(id)}
                 >
                   删除
                 </button>
@@ -42,7 +44,10 @@ export default class ListItem extends Component {
         }}
       </Consumer>
     );
-
-
   }
 };
+
+/*
+* Consumer可以作为订阅者，value则是Provider中传过来的值。
+*
+* */

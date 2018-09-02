@@ -23,11 +23,14 @@ export default class App extends React.PureComponent {
     });
   };
   addUser = (val) => {
-    const users = [...this.state.users, {
-      avatar: '',
-      content: val,
-      username: 'zjk'
-    }];
+    const users = [
+      ...this.state.users,
+      {
+        avatar: 'https://user-gold-cdn.xitu.io/2018/2/17/161a3828ea508b29?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1',
+        content: val,
+        username: 'zjk'
+      }
+    ];
     this.setState({users});
   };
 
@@ -58,11 +61,12 @@ export default class App extends React.PureComponent {
   render() {
     return (
       <Provider value={{
+        removeById: this.removeById,
         increment: this.increment,
         color: 'red'
       }}>
         <div className="container">
-          <div className="panel-heading">评论</div>
+          <div className="panel-heading">评论{this.state.count}</div>
           <div className="panel-body">
             <List users={this.state.users} removeById={this.removeById}></List>
           </div>
