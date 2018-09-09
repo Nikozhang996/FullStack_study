@@ -19,7 +19,23 @@ export default class App extends Component  {
 
   render() {
     return (
-      <div>hello word</div>
-    )
+      /*Router,Index,Switch*/
+      <Router>
+        <Index>
+          <Switch>
+            <Route path="/home" exact={true} component={Home}></Route>
+            <Route path="/home/123" component={Home}></Route>
+
+            {/* 如果没有登陆，则应该重定向 */}
+            <Protected path="/profile" component={Profile}></Protected>
+            <Route path="/user" component={User}></Route>
+            <Route path="/login" component={Login}></Route>
+
+            {/* 重定向到跳转页面 */}
+            <Redirect to="/home"></Redirect>
+          </Switch>
+        </Index>
+      </Router>
+    );
   }
 }

@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Login extends Component {
+export default class MenuLink extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <div>
-        Login
+        MenuLink
       </div>
     )
   }
