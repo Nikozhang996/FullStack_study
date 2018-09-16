@@ -14,7 +14,7 @@ import Index from './pages';
 import Protected from './pages/Protected';
 
 // react路由渲染有三种方式component children默认不匹配也会执行
-export default class App extends Component  {
+export default class App extends Component {
 
 
   render() {
@@ -38,4 +38,4 @@ export default class App extends Component  {
       </Router>
     );
   }
-}
+};
