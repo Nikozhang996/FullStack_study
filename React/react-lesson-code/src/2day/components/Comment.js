@@ -6,15 +6,28 @@ export default class Comment extends Component{
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.addUser(this.content.current.value);
+
+    this.content.current.value = '';
+
+    console.log(this.content.current.focus());
+
   };
 
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <textarea name="text" id="text" cols="30" rows="10"></textarea>
+        <textarea
+          className='form-control'
+          required
+          name="text"
+          id="text"
+          cols="30"
+          rows="10"
+          ref={this.content}
+        ></textarea>
         <button type='submit'>评论</button>
-      </form>);
-  )
-}
+      </form>
+    )
+  }
 }
