@@ -30,34 +30,106 @@ const users = [{
 }];
 
 /* 直接使用回调函数 */
-const result = users
-    // 首先筛选岁月在[20,30]之间
-    .filter(user => user.age >= 20 && user.age <= 30)
-    // 然后作姓名拼接
-    .map(user => `${user.firstName}-${user.lastName}`)
-    // 筛选名称长度小于10的
-    .filter(name => name.length < 10);
+{
+    const result = users
+        // 首先筛选岁月在[20,30]之间
+        .filter(user => user.age >= 20 && user.age <= 30)
+        // 然后作姓名拼接
+        .map(user => `${user.firstName}-${user.lastName}`)
+        // 筛选名称长度小于10的
+        .filter(name => name.length < 10);
+}
 
 /* 独立抽象函数，方便测试 */
+{
+    // 筛选岁月在[20,30]之间
+    function isInTwenties(user) {
+        return user.age >= 20 && user.age < 30;
+    };
 
-// 筛选岁月在[20,30]之间
-function isInTwenties(user) {
-    return user.age >= 20 && user.age < 30;
-};
+    // 姓名拼接生成一个全名
+    function fullNameHandler(user) {
+        return `${user.firstName}-${user.lastName}`
+    };
 
-// 姓名拼接生成一个全名
-function fullNameHandler(user) {
-    return `${user.firstName}-${user.lastName}`
-};
+    // 筛选名称长度小于10的
+    function isAtLeastTenChars(name) {
+        return name.length < 10;
+    };
 
-// 筛选名称长度小于10的
-function isAtLeastTenChars(name) {
-    return name.length < 10;
-};
+    // 返回处理后的结果
+    const result = users.filter(isInTwenties).map(fullNameHandler).filter(isAtLeastTenChars);
+}
 
-const result_1 = users.filter(isInTwenties).map(fullNameHandler).filter(isAtLeastTenChars);
+/* 使用reduce */
+{
+    // 筛选岁月在[20,30]之间
+    function isInTwenties(user) {
+        return user.age >= 20 && user.age < 30;
+    };
+
+    // 姓名拼接生成一个全名
+    function fullNameHandler(user) {
+        return `${user.firstName}-${user.lastName}`
+    };
+
+    // 筛选名称长度小于10的
+    function isAtLeastTenChars(name) {
+        return name.length < 10;
+    };
+    const result = users.reduce((accumulator, user) => {
+        // 生成所有人的全名
+        const fullName = fullNameHandler(user);
+
+        // 一次遍历所有数据，把适用项推入accumulator
+        if (isInTwenties(user) && isAtLeastTenChars(fullName)) {
+            accumulator.push(fullName);
+        }
+        //  Always return the accumulator (for the next iteration)
+        return accumulator
+    }, []);
+
+    // console.log(result);
+}
+/* ******************************************************************************** */
+{
+    const fruits = [{
+            name: 'apples',
+            quantity: 2
+        },
+        {
+            name: 'bananas',
+            quantity: 0
+        },
+        {
+            name: 'cherries',
+            quantity: 5
+        }
+    ];
+    const result = fruits.reduce((total, item) => {
+
+        total += item.quantity;
+
+        return total;
+    }, 0);
+}
 
 
+/* ******************************************************************************** */
 
+{
+    const arr = [{
+        price: 1,
+        count: 2
+    }, {
+        price: 2,
+        count: 3
+    }, {
+        price: 3,
+        count: 5
+    }];
 
-console.log(result_1);
+    const result = arr.reduce((count, item, index, arr) => count += item.price * item.count, 0);
+
+    console.log(result)
+}
