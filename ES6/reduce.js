@@ -131,5 +131,51 @@ const users = [{
 
     const result = arr.reduce((count, item, index, arr) => count += item.price * item.count, 0);
 
-    console.log(result)
+}
+
+/* ******************************************************************************** */
+
+{
+    const arr = [{
+        a: 123,
+        b: 243,
+        c: 43
+    }, {
+        a: 123,
+        b: 243,
+        c: 43
+    }, {
+        a: 123,
+        b: 243,
+        c: 43
+    }, {
+        a: 123,
+        b: 243,
+        c: 43
+    }];
+
+    function fn(...args) {
+        function handleReduceDefaultValue(params) {
+            let temp = params.constructor;
+            args.forEach(item => temp[item] = 0)
+            return temp;
+        }
+        return arr.reduce((result, item, index, arr) => {
+            result[args[0]] += item[args[0]]
+
+            return result;
+        }, handleReduceDefaultValue(args));
+    }
+
+
+    function getSumsHandler(target) {
+        return arr.reduce((total, item, index, arr) => {
+            console.log(item[target])
+            total += item[target];
+            return total;
+        }, 0);
+    }
+
+
+    console.log(getSumsHandler('a'))
 }
