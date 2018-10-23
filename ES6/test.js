@@ -57,4 +57,28 @@ const arr = [{
             }
         ]
     },
-]
+];
+let result = [];
+
+function fn(arr, target) {
+    arr.forEach(item => {
+        for (const key in item) {
+            // console.log(key);
+
+            if (key == 'id') {
+                result.push(item[key])
+            }
+            if (key == 'child') {
+                fn(item[key]);
+            }
+            if (item[key] == target) {
+                result.push(item[key])
+            } else {
+                result = []
+            }
+        }
+    });
+}
+
+fn(arr, 666)
+console.log(result);
