@@ -1,3 +1,6 @@
+const obj = {
+    name: 'zjk'
+}
 /* oberseve */
 function oberseve(object) {
     if (typeof object !== 'object') {
@@ -22,6 +25,7 @@ function defineReactive(target, property, value) {
         }
     })
 }
+
 
 oberseve(obj);
 
