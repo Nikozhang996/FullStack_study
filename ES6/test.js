@@ -61,7 +61,7 @@ const arr = [{
 let result = [];
 
 function fn(arr, target) {
-    arr.forEach(item => {
+    arr.length > 0 && arr.forEach(item => {
         for (const key in item) {
             // console.log(key);
 
