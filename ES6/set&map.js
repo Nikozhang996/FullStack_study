@@ -29,8 +29,8 @@ function insetction(arr1, arr2) {
 
 // 数组求差值
 function diffrence(arr1, arr2) {
-    return [...new Set(arr1)].filter(item => {
+    return Array.from(new Set(arr1)).filter(item => {
         return !new Set(arr2).has(item);
     })
 }
-console.log(diffrence([1, 2, 2, 3, 3, 4], [2, 2, 3, 3, 5]));
+console.log(diffrence([1, 2, 3], [2, 3, 4, 5]));
