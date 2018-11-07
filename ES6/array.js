@@ -3,32 +3,30 @@ function toArray(array) {
     return Array.from(array);
 }
 
-const arr = {
-    0: 1,
-    1: 2,
-    2: 3,
-    3: 4,
-    4: 5,
-    length: 5
-};
-
-const arr1 = {
-    0: {
+const arr = [{
         key: 1,
-        value: '11111'
+        value: '1'
     },
-    1: {
+    {
         key: 2,
-        value: '22222'
+        value: '2'
     },
-    2: {
+    {
         key: 3,
-        value: '33333'
+        value: '3'
     },
-    3: {
+    {
         key: 4,
-        value: '44444'
-    }
-}
+        value: '4'
+    },
+    {
+        key: 5,
+        value: '5'
+    },
+]
 
-console.log(arr1[3])
+let res = arr.find(item => {
+    return item.key == 3
+})
+
+console.log(res);
