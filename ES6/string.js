@@ -6,3 +6,7 @@ function fn(params) {
 }
 
 console.log(fn(str));
+
+for (let i = 0; i < 6666; i++) {
+    total += 1;
+}

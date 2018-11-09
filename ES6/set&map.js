@@ -31,6 +31,15 @@ function insetction(arr1, arr2) {
 function diffrence(arr1, arr2) {
     return Array.from(new Set(arr1)).filter(item => {
         return !new Set(arr2).has(item);
-    })
+    });
 }
-console.log(diffrence([1, 2, 3], [2, 3, 4, 5]));
+// console.log(diffrence([1, 2, 3], [2, 3, 4, 5]));
+
+/* ************************************************************* */
+
+/* Map */
+const map = new Map();
+map.set('js', 'node');
+map.set('js', 'ES6');
+
+console.log(map);
