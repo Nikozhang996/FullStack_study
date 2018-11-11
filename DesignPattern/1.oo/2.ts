@@ -32,3 +32,5 @@ class Student extends Person {
         // console.log(`我的私房钱有${this.money}`);
     }
 }
+
+const bio = new Student('BIO卡洛斯', 20, 2000, 1);
