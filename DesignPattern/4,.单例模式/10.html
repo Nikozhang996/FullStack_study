@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="show-btn">显示登录框</button>
+    <button id="hide-btn">隐藏登录框</button>
+</body>
+
+<script>
+    class Login {
+        constructor() {
+            this.element = document.createElement('div');
+            this.element.innerHTML = (
+                `
+                用户名 <input name="username"/>
+                密码 <input name="password"/>
+                <input type="submit" value="登录"/>     
+                `
+            );
+            this.element.style.cssText =
+                `width:100px;height:100px;position:absolute;left:50%;top:50%;margin-top:-50px;margin-left:-50px;display:none`;
+            document.body.appendChild(this.element);
+        }
+        static getInstance() {
+            if (!this.instance) {
+                this.instance = new Login();
+            }
+            return this.instance;
+        }
+        show() {
+            this.element.style.display = 'block';
+        }
+        hide() {
+            this.element.style.display = 'none';
+        }
+    }
+
+    const showBtn = document.querySelector("#show-btn"),
+        hideBtn = document.querySelector("#hide-btn")
+
+    const login = Login.getInstance();
+
+    showBtn.addEventListener('click', function (ev) {
+        login.show();
+        console.log(ev);
+    })
+    hideBtn.addEventListener('click', function (ev) {
+        login.hide();
+    })
+</script>
+
+</html>
