@@ -12,3 +12,17 @@ const readFilePromise = function (path, encoding, callback) {
     })
 }
 
+
+readFilePromise(`${__dirname}/data/name.txt`, 'utf8')
+    .then(res => {
+        return readFilePromise(`${__dirname}/data/${res}`, 'utf8')
+    })
+    .then(res => {
+        return readFilePromise(`${__dirname}/data/${res}`, 'utf8')
+    })
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err);
+    })
