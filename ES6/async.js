@@ -62,3 +62,4 @@ let result = arr.map((item, index) => {
 });
 
 // console.log(result);
+const fs = require('fs');
