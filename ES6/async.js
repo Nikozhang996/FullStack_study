@@ -1,3 +1,4 @@
+// 原始数据
 const arr = [{
     name: 'zjk',
     age: 20
@@ -11,7 +12,7 @@ const arr = [{
     age: 30
   }
 ];
-
+// 需插入数组
 const list = [
   [{
       id: 1,
@@ -53,7 +54,7 @@ const list = [
     }
   ],
 ];
-
+// 处理结果
 let result = arr.map((item, index) => {
   return {
     ...item,
@@ -63,3 +64,35 @@ let result = arr.map((item, index) => {
 
 // console.log(result);
 const fs = require('fs');
+
+const readFilePromise = function (path, encoding, callback) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, encoding, function (err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    })
+  })
+}
+
+const urls = ['1.txt', '3.txt', '2.txt']
+async function getSequenceData(urls) {
+  let temp = [];
+  // 并发读取异步数据
+  const responsePromises = urls.map(async url => {
+    const response = await readFilePromise(`${__dirname}/${url}`, 'utf-8');
+    return response;
+  });
+
+
+  // 按次序输出
+  debugger
+  // for (const item of responsePromises) {
+  //   temp.push(item);
+  // }
+  // return temp;
+}
+
+getSequenceData(urls);
