@@ -5,12 +5,12 @@ let p = new Promise(function (resolve, reject) {
 });
 
 p.then(function (value) {
-  console.log('suc:'+value);
-},function (reason) {
-  console.log('err:'+reason);
+  console.log('suc:' + value);
+}, function (reason) {
+  console.log('err:' + reason);
 })
 p.then(function (value) {
-  console.log('suc:'+value);
-},function (reason) {
-  console.log('err:'+reason);
+  console.log('suc:' + value);
+}, function (reason) {
+  console.log('err:' + reason);
 })
