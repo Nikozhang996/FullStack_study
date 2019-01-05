@@ -95,4 +95,5 @@ async function getSequenceData(urls) {
   // return temp;
 }
 
+
 getSequenceData(urls);
