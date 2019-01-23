@@ -81,18 +81,19 @@ const urls = ['1.txt', '3.txt', '2.txt']
 async function getSequenceData(urls) {
   let temp = [];
   // 并发读取异步数据
-  const responsePromises = urls.map(async url => {
-    const response = await readFilePromise(`${__dirname}/${url}`, 'utf-8');
-    return response;
+  const responsePromises = urls.map( url => {
+    // const response =  readFilePromise(`${__dirname}/${url}`, 'utf-8');
+    // return response;
+    return readFilePromise(`${__dirname}/${url}`, 'utf-8')
   });
-
-
   // 按次序输出
-  debugger
-  // for (const item of responsePromises) {
-  //   temp.push(item);
-  // }
-  // return temp;
+  for (const item of responsePromises) {
+    console.log(responsePromises);
+    temp.push(await item);
+  }
+  return temp;
 }
 
-getSequenceData(urls);
+getSequenceData(urls).then(res => {
+  console.log(res);
+})
