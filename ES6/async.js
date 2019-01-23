@@ -94,6 +94,11 @@ async function getSequenceData(urls) {
   return temp;
 }
 
+<<<<<<< HEAD
 getSequenceData(urls).then(res => {
   console.log(res);
 })
+=======
+
+getSequenceData(urls);
+>>>>>>> 2802f6e04ed049451eacbbae367508416c378a64
