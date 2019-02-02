@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>animation</title>
+  <style>
+    body {
+      background-color: #666666;
+    }
+
+    #box .box {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: red;
+      position: absolute;
+      left: 0;
+    }
+
+    .box1 {
+      top: 100px;
+    }
+
+    .box2 {
+      top: 250px;
+    }
+
+    .box3 {
+      top: 400px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="box">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+  </div>
+</body>
+
+<script>
+  // 封装一个选择器方法
+  const $ = document.querySelector.bind(document);
+  // 获取元素先
+  const $box1 = $('.box'),
+    $box2 = $('.box2'),
+    $box3 = $('.box3');
+
+  // 回调的方式实现
+  {
+    function move(element, target, callback) {
+      let left = 0;
+      let timer = setInterval(function () {
+        if (left >= target) {
+          clearInterval(timer);
+          return callback()
+        }
+        left++;
+        element.style.left = left + 'px';
+      }, 6);
+    }
+
+    // move($box1, 500, function () {
+    //   move($box2, 500, function () {
+    //     move($box3, 500, function () {
+    //       console.log('动画完成');
+    //     });
+    //   });
+    // });
+  }
+
+  // 基于Promise实现
+  {
+    function move(element, target) {
+      return new Promise((resolve, reject) => {
+        let left = 0;
+        let timer = setInterval(function () {
+          if (left >= target) {
+            clearInterval(timer);
+            return resolve()
+          }
+          left++;
+          element.style.left = left + 'px';
+        }, 6);
+      })
+    }
+
+    // move($box1, 500)
+    //   .then(() => {
+    //     return move($box2, 500)
+    //   })
+    //   .then(() => {
+    //     return move($box3, 500)
+    //   })
+    //   .then(() => {
+    //     console.log('动画完成');
+    //   })
+  }
+
+  // 基于generator实现
+  {
+    function move(element, target) {
+      return new Promise((resolve, reject) => {
+        let left = 0;
+        let timer = setInterval(function () {
+          if (left >= target) {
+            clearInterval(timer);
+            return resolve()
+          }
+          left++;
+          element.style.left = left + 'px';
+        }, 6);
+      });
+    }
+
+    function co(it) {
+      return new Promise((resolve, reject) => {
+        function next(data) {
+          let {
+            value,
+            done
+          } = it.next(data);
+
+          if (!done) {
+            value.then(data => {
+              next(data);
+            }, reject);
+          } else {
+            resolve(value);
+          }
+        }
+        next()
+      })
+    }
+
+    function* gen() {
+      const one = yield move($box1, 100);
+      const two = yield move($box2, 100);
+      const three = yield move($box3, 100);
+      return undefined;
+    }
+
+    const it = gen();
+    co(it).then(res => {
+      console.log(res);
+    })
+    // it.next();
+    // it.next();
+    // it.next();
+    // it.next().value
+    //   .then(res => {
+    //     return it.next().value;
+    //   })
+    //   .then(res => {
+    //     return it.next().value;
+    //   })
+    //   .then(res => {
+    //     console.log('动画结束了');
+    //   })
+  }
+
+  // 基于async await实现
+  {
+    function move(element, target) {
+      return new Promise((resolve, reject) => {
+        let left = 0;
+        let timer = setInterval(function () {
+          if (left >= target) {
+            clearInterval(timer);
+            return resolve()
+          }
+          left++;
+          element.style.left = left + 'px';
+        }, 6);
+      });
+    }
+
+    async function func() {
+      await move($box1, 100);
+      await move($box2, 100);
+      await move($box3, 100);
+      return `动画完了`;
+    }
+    // func().then(res => {
+    //   console.log(res);
+    // })
+  }
+</script>
+
+</html>
