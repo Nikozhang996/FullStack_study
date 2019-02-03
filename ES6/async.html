@@ -138,11 +138,11 @@
       })
     }
 
-    function* gen() {
+    function* gen(arr) {
       const one = yield move($box1, 100);
       const two = yield move($box2, 100);
       const three = yield move($box3, 100);
-      return undefined;
+      return 666;
     }
 
     const it = gen();
@@ -193,3 +193,10 @@
 </script>
 
 </html>
+
+<!-- 
+  参考资料：
+  https://www.jianshu.com/p/112373662dff
+  https://blog.csdn.net/tcy83/article/details/80427195
+  https://baijiahao.baidu.com/s?id=1595733115679443901&wfr=spider&for=pc
+ -->
