@@ -11,6 +11,22 @@ function fn(role) {
             fn(item.subclass)
         }
     });
+    // return Array.isArray(role) && role.reduce((result, item) => {
+
+    //     const {
+    //         key,
+    //         subclass
+    //     } = item;
+
+    //     if (key) {
+    //         result.push(key)
+    //         return result;
+    //     }
+    //     if (subclass) {
+    //         fn(subclass);
+    //     }
+    // }, []);
 }
 
+fn(role)
 console.log(arr);
