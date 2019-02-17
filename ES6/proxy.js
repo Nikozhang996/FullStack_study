@@ -1,44 +1,31 @@
+/**
+ * proxy
+ * Reflect?
+ * */
 const obj = {
-    name: 'zjk'
-}
-/* oberseve */
-function oberseve(object) {
-    if (typeof object !== 'object') {
-        return;
-    }
-
-    for (const key in object) {
-        defineReactive(object, key, object[key]);
-        oberseve(object[key]);
-    }
+  name: 'zjk',
+  age: 20
 }
 
-/* defineReactive */
-function defineReactive(target, property, value) {
-    Object.defineProperty(target, property, {
-        get() {
-            return value;
-        },
-        set(newValue) {
-            value = newValue;
-            console.log(`数据更新了:${value}`)
-        }
-    })
-}
+const arr = [1, 2, 3, 4, 5];
 
+const objProxy = new Proxy(obj, {
+  get(target, key, value) {
+    return `返回结果：${Reflect.get(target, key)}`;
+  },
+  set(target, key, value) {
+    if (key === 'length') return true;
+    return Reflect.set(target, key, value);
+  },
+});
 
-oberseve(obj);
-
-obj.name = 'BIO';
-obj.name = '卡洛斯';
-obj.name = 'hello';
-obj.name = 'word';
-
-/* 
-  
-*/
-
-
-/* proxy */
-
-// Reflect?
+const arrProxy = new Proxy(arr, {
+  get(target, key, value) {
+    return key;
+  },
+  set(target, key, value) {
+    return Reflect.set(target, key, value);
+  },
+});
+arrProxy[99] = 666;
+console.log(arrProxy);
