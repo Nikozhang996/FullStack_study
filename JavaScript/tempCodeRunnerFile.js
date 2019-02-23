@@ -1,1 +1,1 @@
-arguments
+func
