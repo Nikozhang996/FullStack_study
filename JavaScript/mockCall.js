@@ -43,7 +43,7 @@
   Function.prototype.mockCall = function (context) {
     // 初始化上下文context，若context为普通类型则转为对象存储
     context = context ? Object(context) : window;
-    // 预设一个上下文保存当前this，this为当前call调用前的函数
+    // 将当前调用方法存入context中
     context.fn = this;
     // 初始化一个数组存放传入的变量
     const args = Array.from(arguments).slice(1);
