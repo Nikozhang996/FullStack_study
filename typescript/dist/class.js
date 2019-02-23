@@ -37,4 +37,33 @@ var Student = /** @class */ (function (_super) {
     };
     return Student;
 }(Person));
-/* ********************************************************************** */ 
+/* ********************************************************************** */
+var Father = /** @class */ (function () {
+    function Father(name, age, money) {
+        this.name = name;
+        this.age = age;
+        this.money = money;
+    }
+    Father.getClassname = function () {
+        return this.className;
+    };
+    Father.prototype.getName = function () {
+        return this.name;
+    };
+    Father.prototype.setName = function (name) {
+        this.name = name;
+    };
+    Father.className = 'Father';
+    return Father;
+}());
+var Child = /** @class */ (function (_super) {
+    __extends(Child, _super);
+    function Child(name, age, money) {
+        return _super.call(this, name, age, money) || this;
+    }
+    Child.prototype.desc = function () {
+        console.log(this.name + " " + this.age + " " + this.money);
+    };
+    return Child;
+}(Father));
+/* ********************************************************************** */
