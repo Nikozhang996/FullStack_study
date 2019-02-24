@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mockRender</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+
+  <script src="./mockCreateElement.js"></script>
+  <script src="./mockRender.js"></script>
+  <script>
+    let diffDom = createElement('h1', {
+        id: 'titleBox',
+        className: 'title',
+        style: {
+          color: 'green'
+        },
+        ref: 'AA',
+        key: '12'
+      },
+      '\u73E0\u5CF0\u57F9\u8BAD');
+
+
+    render(diffDom, root, function () {
+      console.log('ok');
+
+    })
+  </script>
+</body>
+
+</html>
