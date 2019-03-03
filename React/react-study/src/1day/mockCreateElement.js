@@ -4,7 +4,7 @@
  * @param {Object} props 
  * @param {Array|String} children 
  */
-function createElement(type, props = {}, children) {
+export default createElement(type, props = {}, children) {
   let ref, key;
   if ('ref' in props) {
     ref = props['ref'];

@@ -1,13 +1,10 @@
-// import {
-//   createElement
-// } from './mockCreateElement';
 /**
  * render
  * @param {Object} obj 需要挂载的对象
  * @param {DOM} container 需要插入的容器
  * @param {Function} callBack 回调函数
  */
-function render(obj = {}, container, callBack) {
+export default render(obj = {}, container, callBack) {
   let {
     type,
     props
@@ -56,7 +53,7 @@ function render(obj = {}, container, callBack) {
   }
 
   console.log(element);
-  
+
   // 插入最终结果
   container.appendChild(element);
   // 如果存在回调函数则执行
