@@ -3,7 +3,7 @@ import {
   render
 } from 'react-dom';
 // css
-import './index.css'
+import '../index.css'
 
 let str = 'string';
 let num = 666;
