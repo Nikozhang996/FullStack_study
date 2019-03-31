@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="140d0dd9-b4af-4db9-bd10-71afaa6221dc" name="Default Changelist" comment="3.index.js">
+    <list default="true" id="140d0dd9-b4af-4db9-bd10-71afaa6221dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -131,7 +131,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../happy_send/trunk/vipthink_admin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -170,7 +170,8 @@
       <workItem from="1552444155942" duration="127000" />
       <workItem from="1552488126143" duration="1266000" />
       <workItem from="1552490143194" duration="2807000" />
-      <workItem from="1553179631716" duration="2217000" />
+      <workItem from="1553179631716" duration="3541000" />
+      <workItem from="1553189041402" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/Nikozhang996/FullStack_study&#10;&#10;# Conflicts:&#10;#&#9;JavaScript/mockNew.js">
       <created>1550896337273</created>
@@ -186,11 +187,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553183436820</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3.index.js">
+      <created>1553183703150</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1553183703150</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11167000" />
+    <option name="totallyTimeSpent" value="12509000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="384" y="0" width="1543" height="1057" extended-state="0" />
@@ -251,13 +259,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/React/react-study/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/React/react-study/src/2dsay/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -265,6 +266,13 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React/react-study/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
         </state>
       </provider>
     </entry>

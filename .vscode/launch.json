@@ -7,7 +7,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/JavaScript/mockNew.js"
+      "program": "${workspaceFolder}/TEST/test.js"
     },
     {
       "type": "chrome",
