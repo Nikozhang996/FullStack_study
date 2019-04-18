@@ -1,56 +1,7 @@
-const arr = [1, 2, 3, 4, 6, 7]
-const arr2 = [2, 3, 4, 6, 7]
+const url = 'https://www.vipthink.cn/index/ad/ad_index/adId/10821?callback=http://track.sigmob.cn/track?c%3DCiRmOWVkMmI4ZC02MGYzLTExZTktOWY0YS0wMDE2M2UwYzIzZDQiATEqC2UwMDAxYzc1ZjRhOiMKAjUyEgQ0NzMwGgUxMzM2MyADKIgnMIgnUgM3NzhaAzI4MkgBUAFafwokODUwQ0M0N0UtMkM2Qy00RTBELTlDRUItNEM1QjYzMTQ3MjkxEiQ3QzhBN0IwRi1BMEMxLTQ2OUQtOUMwMy00MDlBN0ZGMUREN0MaBDEyMzJKJDg1MENDNDdFLTJDNkMtNEUwRC05Q0VCLTRDNUI2MzE0NzI5MVIFQXBwbGViBDEyNDFqDDYxLjQ5LjUxLjE1Ng%26e%3Dactive%26p%3DOML9xjIE2GpXa5Auktzzng#'
 
+let start = url.indexOf('?') + 1;
 
-function func(arr, target) {
-  let temp = [...arr];
-  const flag = temp.indexOf(target),
-    last = temp.length
-  // 第一项
-  if (flag == 0) {
-    let a = temp.splice(0, 2)
-    return [...temp, ...a];
-  }
-  // 最后一项
-  if (flag == last - 1) {
-    return [...temp.slice(1, last), temp[0]]
-  }
-  // 中间项
-  let arr1 = temp.splice(flag - 1, 3);
-  return [...temp, ...arr1];
-}
+let result = url.slice(start, -1);
 
-// console.log(func(arr, 1));
-// console.log(func(arr, 5));
-// console.log(func(arr, 7));
-
-
-function func2(arr2, value) {
-  let temp = [...arr];
-  const start = value - 1,
-    end = value;
-  // 第一项
-  if (start == 0) {
-    let a = temp.splice(0, -1)
-    return [...temp, ...a];
-  }
-  // 最后一项
-  if (start == end - 1) {
-    return [...temp.slice(1, end), temp[0]]
-  }
-}
-
-console.log(func(arr, 1));
-
-
-function func2(arr, target) {
-  return [
-    ...arr.find(item => item.key == target),
-    ...arr.sort((a, b) => b.key - a.key).filter(item => item.key != target)
-  ]
-}
-
-const arr3 = [{ "key": 14, "val": "14:00" }, { "key": 15, "val": "15:00" }, { "key": 16, "val": "16:00" }, { "key": 17, "val": "17:00" }, { "key": 18, "val": "18:00" }, { "key": 19, "val": "19:00" }, { "key": 20, "val": "20:00" }]
-
-
-console.log(func2(arr3, 16));
+console.log(result.split('='));
