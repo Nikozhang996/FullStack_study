@@ -4,4 +4,6 @@ let start = url.indexOf('?') + 1;
 
 let result = url.slice(start, -1);
 
-console.log(result.split('='));
+let obj  = new URL(url);
+
+console.log(obj.searchParams);
