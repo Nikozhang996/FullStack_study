@@ -1,0 +1,15 @@
+!.gitkeep
+.idea/**/*
+.vscode/**/*
+.DS_Store
+dist/electron/*
+dist/**/*
+build/*
+!build/icons
+coverage
+node_modules/
+npm-debug.log
+npm-debug.log.*
+thumbs.db
+course_res_test/**/*
+logs/**/*
