@@ -1,25 +1,32 @@
 <template>
-  <div>
+  <div id="app">
     <date-picker :value="123"></date-picker>
   </div>
 </template>
+
 <script>
-import DatePicker from "./components/DatePicker";
-export default {
-  components: {
-    DatePicker
-  },
-  props: {},
-  data() {
-    return {};
-  }
-};
+  import DatePicker from "./components/DatePicker";
+
+  export default {
+    components: {
+      DatePicker
+    },
+    props: {},
+    data() {
+      return {};
+    },
+    methods: {
+      func() {
+      }
+    }
+  };
 </script>
-<style lang="stylus" scoped>
-body {
-  color: #ffffff;
-  background-color: #666666;
-}
+
+<style lang="stylus">
+  body {
+    color: #ffffff;
+    background-color: #666666;
+  }
 </style>
 
 
