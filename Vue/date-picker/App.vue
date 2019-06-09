@@ -17,8 +17,8 @@
     },
     methods: {
       func() {
-
-
+        console.log(this);
+        
       }
     }
   };
@@ -30,5 +30,3 @@
     background-color: #666666;
   }
 </style>
-
-
