@@ -255,9 +255,26 @@ const users = [
 
   function func(arr) {
     return arr.reduce((result, item, index, arr) => {
-      return [...result, ...item.split(",")];
+      //   return [...result, ...item.split(",")];
+      return result.concat(item.split(/,/g));
     }, []);
   }
 
-  console.log(func(fileLines));
+  // console.log(func(fileLines));
+}
+
+/* 在一次遍历中进行两次计算 */
+
+{
+  const readings = [0.3, 1.2, 3.4, 0.2, 3.2, 5.5, 0.4];
+  const maxReading = readings.reduce(
+    (x, y) => Math.max(x, y),
+    Number.MIN_VALUE
+  );
+  const minReading = readings.reduce(
+    (x, y) => Math.min(x, y),
+    Number.MAX_VALUE
+  );
+  console.log({ minReading, maxReading });
+  // {minReading: 0.2, maxReading: 5.5}
 }
