@@ -33,7 +33,7 @@
   }
 </script>
 
-<style scoped>
+<style scope>
   body, html {
     background-color: #666666;
     color: #00A7AA;
