@@ -22,7 +22,8 @@ const getInst = () => {
 
 const Message = {
   info(options) {
-    getInst().add(options);
+    // getInst().add(options);
+    console.log(options);
   },
   warning(options) {
 
@@ -40,16 +41,17 @@ export {
   Message
 };
 
-let _vue;
+let _Vue;
 export default {
   install(Vue, option) {
-    if (!_vue) {
-      _vue = Vue;
+    if (!_Vue) { // 防止用户多次use
+      _Vue = Vue;
       let $message = {};
       Object.keys(Message).forEach(type => {
         $message[type] = Message[type];
       });
-      Vue.prototype.$message = $message;
+      ;
+      Vue.prototype.$message = $message
     }
   }
 }

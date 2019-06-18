@@ -13,7 +13,6 @@
       }
     },
     mounted() {
-      console.log(this);
       this.id = 0;
     },
     methods: {

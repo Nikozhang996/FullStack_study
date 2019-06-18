@@ -1,7 +1,6 @@
 <template>
   <div>
     <button @click="onShowMessage">点击调用</button>
-    <test></test>
   </div>
 </template>
 
@@ -9,25 +8,20 @@
   import Vue from 'vue';
   import Message from './components/Message.js';
 
-  Vue.use(Message);
-
-  import Test from './components/Test';
+  Vue.use(Message,{a: 1, b: 2});
 
   export default {
     name: "App",
-    components: {
-      Test,
-      // Message,
-    },
     created() {
       console.log(this.$message);
     },
     methods: {
       onShowMessage() {
-        this.$message.info({
-          message: 'i am info',
-          duration: 3000
-        })
+        // this.$message.info({
+        //   message: 'i am info',
+        //   duration: 3000
+        // })
+        console.log(this.$message);
       }
     }
   }
