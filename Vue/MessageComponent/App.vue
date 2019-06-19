@@ -1,35 +1,26 @@
 <template>
   <div>
-    <button @click="onShowMessage">点击调用</button>
+    <button @click="showMessage">点我弹层</button>
   </div>
 </template>
 
 <script>
   import Vue from 'vue';
-  import Message from './components/Message.js';
-
-  Vue.use(Message,{a: 1, b: 2});
-
+  import Message from './components/Message';
+  Vue.use(Message,{duration:1000}); // 使用一个插件，我们内部需要提供一个install方法
   export default {
-    name: "App",
-    created() {
-      console.log(this.$message);
+    name:'parent',
+    mounted(){
+      console.log(this._info);
     },
-    methods: {
-      onShowMessage() {
-        // this.$message.info({
-        //   message: 'i am info',
-        //   duration: 3000
-        // })
+    methods:{
+      showMessage(){
         console.log(this.$message);
+        // this.$message.info({
+        //   message: '我很帅1',
+        //   duration: 3000
+        // });
       }
     }
   }
 </script>
-
-<style scope>
-  body, html {
-    background-color: #666666;
-    color: #00A7AA;
-  }
-</style>
