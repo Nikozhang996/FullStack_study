@@ -1,5 +1,5 @@
 <template>
-  <ul class="message" v-if="message.length">
+  <ul class="message" v-if="messages.length">
     <li v-for="m in messages" :key="m.id">{{m.message}}</li>
   </ul>
 </template>
