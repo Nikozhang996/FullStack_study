@@ -11,6 +11,7 @@ let getInstance = () => {
   return {
     add(options) {
       component.add(options);
+      // console.log(component);
     }
   };
   // vm.$el
@@ -26,11 +27,14 @@ const Message = {
   info(options) {
     getInst().add(options);
   },
-  warn() {
+  warn(options) {
+    console.log(options);
   },
-  success() {
+  success(options) {
+    console.log(options);
   },
-  error() {
+  error(options) {
+    console.log(options);
   }
 };
 export {Message};
@@ -53,7 +57,7 @@ export default {
       beforeCreate() {
         // 在所有的组件中都增加了这个方法
         if (this.$options.info) {
-          console.log(this.$options.name);
+          // console.log(this.$options.name);
           this._info = this.$options.info;
         } else {
           console.log(this.$options.name);
