@@ -6,15 +6,10 @@
     给定 nums = [2, 7, 11, 15], target = 9
     因为 nums[0] + nums[1] = 2 + 7 = 9
     所以返回 [0, 1]
+    https://leetcode-cn.com/problems/two-sum/solution/liang-shu-zhi-he-by-leetcode-2/
  */
 
 /*************************************************************************************************/
-
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
 
 const nums = [2, 7, 11, 15];
 
@@ -31,13 +26,33 @@ const twoSum = function(nums, target) {
       const key_j = j;
       const value_j = nums[j];
 
-      let result = value_i + value_j === target;
-
-      if (result) {
+      if (value_i + value_j === target) {
         return [key_i, key_j];
       }
     }
   }
+
+  console.log("结果不存在");
 };
 
-console.log(twoSum(nums, 18));
+const twoSum2 = function(nums, target) {
+  // 将数组转为哈希表，以值为key，索引为value
+  let hashMap = new Map();
+  nums.forEach((item, index) => hashMap.set(item, index));
+
+  for (let i = 0; i < nums.length; i++) {
+    let complementValue = target - nums[i], // 剩余值
+      complementFlag = hashMap.has(complementValue), // 是否存在剩余值
+      complementKey = hashMap.get(complementValue); // 剩余值索引
+
+    if (complementFlag && complementKey != i) {
+      return [i, complementKey];
+    }
+  }
+
+  return "没有数据";
+};
+
+console.log(twoSum2(nums, 9));
+console.log(twoSum2(nums, 18));
+console.log(twoSum2(nums, 17));
