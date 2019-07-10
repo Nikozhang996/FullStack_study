@@ -10,7 +10,16 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
-
+      meta: {
+        title:'home'
+      },
+      beforeEnter(to,from,next){
+        console.log('beforeEnter');
+        next();
+      },
+      afterEnter(to, from, next) {
+        console.log('afterEnter');
+      }
     },
     {
       path: '/one',
