@@ -18,7 +18,6 @@
     methods: {
       func() {
         console.log(this);
-        
       }
     }
   };
