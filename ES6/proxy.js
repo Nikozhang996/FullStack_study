@@ -5,7 +5,7 @@
 const obj = {
   name: 'zjk',
   age: 20
-}
+};
 
 const arr = [1, 2, 3, 4, 5];
 
@@ -28,4 +28,5 @@ const arrProxy = new Proxy(arr, {
   },
 });
 arrProxy[99] = 666;
-console.log(arrProxy);
+// console.log(arrProxy);
+
