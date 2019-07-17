@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import { DatePicker } from 'antd';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
 export default function () {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-      </header>
+     
     </div>
   );
 };
