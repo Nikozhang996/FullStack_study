@@ -22,5 +22,17 @@
       []
     );
   }
-  console.log(arrayFlatByES6(arr));
+
+  Array.prototype.selfFlat = function(count) {
+    return this.reduce(function(result, item) {
+      if (Array.isArray(item)) {
+        return result.concat(item.selfFlat());
+      } else {
+        result.push(item);
+        return result;
+      }
+    }, []);
+  };
+  // console.log(arrayFlatByES6(arr));
+  console.log(arr.selfFlat());
 }
