@@ -35,22 +35,20 @@ function tableColumnsHandler(source, config = {}, appendData = {}) {
     }
   }
 
-  if (Array.isArray(appendData.prefix) && appendData.prefix.length > 0){
-
+  if (Array.isArray(appendData.prefix) && appendData.prefix.length > 0) {
   }
-  if (Array.isArray(appendData.prefix) && appendData.prefix.length > 0){
-      
-}
-    return Object.values(result);
+  if (Array.isArray(appendData.prefix) && appendData.prefix.length > 0) {
+  }
+  return Object.values(result);
 }
 
 let result = tableColumnsHandler(
   tableColumns,
   {
-    id: { width: 150 },
+    id: { width: 150, AAA: "custom", BBB: 6666 },
+    refundTime: { width: 233, AAA: "custom", CCC: 233 },
     AAA: { width: 150 },
-    BBB: { width: 150 },
-    CCC: { width: 150 }
+    BBB: { width: 150 }
   },
   {
     prefix: [],
