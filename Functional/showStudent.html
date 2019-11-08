@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>showStudent</title>
+    <style>
+      body {
+        background-color: #666;
+        color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="element"></div>
+
+    <script>
+      const db = {
+        a: {
+          ssn: 123,
+          firstName: "Niko",
+          lastName: "Zhang"
+        }
+      };
+
+      function showStudent(ssn) {
+        const student = db[ssn];
+        if (student !== null) {
+          document.querySelector(`#element`).innerHTML = `
+          ${student.ssn},
+          ${student.firstName},
+          ${student.lastName}
+          `;
+        }
+      }
+
+
+      showStudent('a')
+    </script>
+  </body>
+</html>
