@@ -25,7 +25,7 @@
 
   const fn = currying(add)(1, 2)(2); // 先保存每次调用后的参数
 
-  console.log(fn(1));
+  // console.log(fn(1));
 }
 
 // 数组降维
@@ -43,14 +43,28 @@
     }, []);
   }
 
-  function arrayFlatByES6(array, count) {
-    return array.reduce(
-      (result, item) =>
-        Array.isArray(item)
-          ? [...result, ...arrayFlatByES6(item)]
-          : [...result, item],
-      []
-    );
+  function arrayFlatByES6(array, depth) {
+    let count = typeof depth === "number" && depth > 0 ? depth : undefined;
+
+    if (count > 0 || typeof count === "undefined") {
+      return array.reduce(
+        (result, item) =>
+          Array.isArray(item)
+            ? [...result, ...arrayFlatByES6(item, count - 1)]
+            : [...result, item],
+        []
+      );
+    }
+    if (count === 0) {
+      return [];
+    }
+    // return array.reduce(
+    //   (result, item) =>
+    //     Array.isArray(item)
+    //       ? [...result, ...arrayFlatByES6(item)]
+    //       : [...result, item],
+    //   []
+    // );
   }
 
   Array.prototype.selfFlat = function(count) {
@@ -63,6 +77,6 @@
       }
     }, []);
   };
-  // console.log(arrayFlatByES6(arr));
+  console.log(arrayFlatByES6(arr));
   // console.log(arr.selfFlat());
 }
