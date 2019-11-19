@@ -76,7 +76,7 @@ setTimeout(function() {
   function helloCallback(callback) {
     setTimeout(() => callback("hello world"), 100);
   }
-
+ 
   helloEvents("BIO卡洛斯").on("hello", function(value) {
     console.log(value);
   });
