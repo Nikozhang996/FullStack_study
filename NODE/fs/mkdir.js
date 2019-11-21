@@ -18,4 +18,35 @@ function mkdirSync(pathUrl) {
   }
 }
 
-mkdirSync(pathUrl);
+function mkdir(pathUrl, callback) {
+  const pathArr = pathUrl.split("/");
+  fs.access(path.resolve(__dirname, pathArr[0]), function(err, data) {
+    if (err) {
+      console.log("文件夹已存在");
+    } else {
+      function next(index) {
+        // 递归先确定终止条件
+        if (pathArr.length === index) return callback();
+        const currentPath = pathArr.slice(0, ++index).join("/"),
+          absPath = path.resolve(__dirname, currentPath);
+        console.log(absPath);
+
+        fs.access(absPath, function(err, data) {
+          if (err) {
+            fs.mkdir(absPath, function() {
+              next(index);
+            });
+          } else {
+            next(index);
+          }
+        });
+      }
+
+      next(0);
+    }
+  });
+}
+
+mkdir(pathUrl, function() {
+  console.log("mkdir success");
+});
