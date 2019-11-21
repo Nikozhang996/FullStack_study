@@ -20,6 +20,8 @@ function mkdirSync(pathUrl) {
 
 function mkdir(pathUrl, callback) {
   const pathArr = pathUrl.split("/");
+  console.log(path.resolve(__dirname, pathArr[0]));
+  
   fs.access(path.resolve(__dirname, pathArr[0]), function(err, data) {
     if (err) {
       console.log("文件夹已存在");
@@ -27,13 +29,12 @@ function mkdir(pathUrl, callback) {
       function next(index) {
         // 递归先确定终止条件
         if (pathArr.length === index) return callback();
-        const currentPath = pathArr.slice(0, ++index).join("/"),
-          absPath = path.resolve(__dirname, currentPath);
-        console.log(absPath);
+        const currentPath = pathArr.slice(0, ++index).join("/");
+        const absPath = path.resolve(__dirname, currentPath);
 
-        fs.access(absPath, function(err, data) {
+        fs.access(currentPath, function(err, data) {
           if (err) {
-            fs.mkdir(absPath, function() {
+            fs.mkdir(currentPath, function() {
               next(index);
             });
           } else {
