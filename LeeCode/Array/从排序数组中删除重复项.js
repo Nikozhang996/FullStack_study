@@ -1,7 +1,7 @@
 /**
  * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/21/
  * */
-const nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+let nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 3];
 
 // ES6原生方法，利用Set结构特征创建一个Set最后转换为Array
 function removeDuplicatesBySet(array = []) {
@@ -26,17 +26,33 @@ function removeDuplicatesByIndexOfReduce(array) {
   }, []);
 }
 
+// 利用Array.prototype.ncludes方法查询后项有无相同值，思路与indexOf一致
 function removeDuplicatesByIncludes(array) {
   return array.reduce((result, item, index, source) => {
-    return source.slice(index + 1).includes(item) ? [...result, item] : result;
+    return source.slice(index + 1).includes(item) ? result : [...result, item];
   }, []);
 }
 
+function removeDuplicates(array) {
+  let a = 0,
+    b = 1;
+
+  while (a < array.length) {
+    const prev = array[a];
+    const next = array[b];
+    if (prev !== next) {
+      array[a + 1] = next;
+      a++;
+    }
+    b++;
+  }
+}
 let result = [];
 
 // result = removeDuplicatesBySet(nums);
 // result = removeDuplicatesByIndexOf(nums);
 // result = removeDuplicatesByIndexOfReduce(nums);
-result = removeDuplicatesByIncludes(nums);
+// result = removeDuplicatesByIncludes(nums);
+result = removeDuplicates(nums);
 
-console.log(nums.includes(4));
+console.log(nums);
