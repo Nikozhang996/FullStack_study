@@ -33,19 +33,24 @@ function removeDuplicatesByIncludes(array) {
   }, []);
 }
 
+// 利用双指针思路进行位移操作，解决On^2问题。但注意该方法一定是保证数组是有序的
+// https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/solution/shuang-zhi-zhen-shan-chu-zhong-fu-xiang-dai-you-hu/
 function removeDuplicates(array) {
+  let temp = [...array];
   let a = 0,
     b = 1;
 
-  while (a < array.length) {
-    const prev = array[a];
-    const next = array[b];
+  while (b < temp.length) {
+    const prev = temp[a];
+    const next = temp[b];
     if (prev !== next) {
-      array[a + 1] = next;
+      temp[a + 1] = next;
       a++;
     }
     b++;
   }
+
+  return temp.slice(0, a);
 }
 let result = [];
 
@@ -55,4 +60,4 @@ let result = [];
 // result = removeDuplicatesByIncludes(nums);
 result = removeDuplicates(nums);
 
-console.log(nums);
+console.log(result);
