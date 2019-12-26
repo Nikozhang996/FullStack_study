@@ -20,10 +20,10 @@ function mkdirSync(pathUrl) {
 
 function mkdir(pathUrl, callback) {
   const pathArr = pathUrl.split("/");
-  console.log(path.resolve(__dirname, pathArr[0]));
-  
-  fs.access(path.resolve(__dirname, pathArr[0]), function(err, data) {
+
+  fs.access(path.resolve(__dirname, pathArr[0]), function (err, data) {
     if (err) {
+      console.log(path.resolve(__dirname, pathArr[0]));
       console.log("文件夹已存在");
     } else {
       function next(index) {
@@ -32,9 +32,9 @@ function mkdir(pathUrl, callback) {
         const currentPath = pathArr.slice(0, ++index).join("/");
         const absPath = path.resolve(__dirname, currentPath);
 
-        fs.access(currentPath, function(err, data) {
+        fs.access(currentPath, function (err, data) {
           if (err) {
-            fs.mkdir(currentPath, function() {
+            fs.mkdir(currentPath, function () {
               next(index);
             });
           } else {
@@ -48,6 +48,6 @@ function mkdir(pathUrl, callback) {
   });
 }
 
-mkdir(pathUrl, function() {
+mkdir(pathUrl, function () {
   console.log("mkdir success");
 });
