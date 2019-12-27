@@ -27,4 +27,7 @@ function removeDirSync(filePath) {
   return true;
 }
 
-removeDirSync(path.resolve(__dirname, "./c"));
+// removeDirSync(path.resolve(__dirname, "./c"));
+function removeDir(filePath,callback) {
+  
+}
