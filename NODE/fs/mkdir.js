@@ -3,12 +3,10 @@ const fsPromise = require("fs").promises;
 const path = require("path");
 
 const pathUrl = "c/d/e/f/g";
-const pathMap = [
-  {
+const pathMap = [{
     id: "c",
     name: "C",
-    children: [
-      {
+    children: [{
         id: "c1",
         name: "C1"
       },
@@ -19,8 +17,7 @@ const pathMap = [
       {
         id: "c3",
         name: "C3",
-        children: [
-          {
+        children: [{
             id: "e1",
             name: "E1"
           },
@@ -39,8 +36,7 @@ const pathMap = [
   {
     id: "d",
     name: "D",
-    children: [
-      {
+    children: [{
         id: "d1",
         name: "D1"
       },
@@ -57,8 +53,7 @@ const pathMap = [
   {
     id: "e",
     name: "E",
-    children: [
-      {
+    children: [{
         id: "e1",
         name: "E1"
       },
@@ -111,7 +106,7 @@ function mkdir(pathUrl, callback) {
     fs.access(absPath, (err, data) => {
       // 如果文件不存在，则在当前路径创建该目录，如果存在，创建下一层
       if (err) {
-        fs.mkdir(absPath, function() {
+        fs.mkdir(absPath, function () {
           next(index); // 当前创建完毕后 创建下一次即可
         });
       } else {
@@ -123,6 +118,6 @@ function mkdir(pathUrl, callback) {
   next(0);
 }
 
-// mkdir(pathUrl, function() {
-//   console.log("mkdir success");
-// });
+mkdir(pathUrl, function () {
+  console.log("mkdir success");
+});

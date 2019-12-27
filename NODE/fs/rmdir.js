@@ -27,7 +27,45 @@ function removeDirSync(filePath) {
   return true;
 }
 
-// removeDirSync(path.resolve(__dirname, "./c"));
-function removeDir(filePath,callback) {
-  
+function removeDir(filePath, callback) {
+  fs.stat(filePath, function(err, targetStatus) {
+    if (err) {
+      return console.log(err);
+    }
+    if (targetStatus.isDirectory()) {
+      fs.readdir(filePath, function(err, dirs) {
+        const childrenDirsPath = dirs.map(function(item) {
+          return path.resolve(filePath, item);
+        });
+        let index = 0;
+        function next() {
+          if (index === childrenDirsPath.length) {
+            console.log(index);
+            fs.rmdir(filePath, callback);
+            return;
+          }
+          const currentDirPath = childrenDirsPath[index++];
+          removeDir(currentDirPath, function() {
+            next();
+          });
+        }
+        next();
+      });
+    } else {
+      fs.unlink(filePath, typeof callback === "function" && callback());
+    }
+  });
 }
+
+// removeDirSync(path.resolve(__dirname, "./c"));
+
+removeDir(path.resolve(__dirname, "./c"), function() {
+  console.log("delete success");
+});
+
+/**
+ * https://gitee.com/jw-speed/201905jiagouke/blob/master/10.fs/2.fs-rmdir.js
+ * 1.检查是否存在
+ * 2.判断目标是否为文件夹还是文件
+ * 3.递归删除
+ */
