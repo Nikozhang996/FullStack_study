@@ -1,4 +1,5 @@
 const fs = require("fs");
+const fsPromise = require("fs").promises;
 const path = require("path");
 
 // 同步删除文件夹，必须为空文件夹才能删除，递归至树叶节点，删除文件，或删除自身
@@ -32,18 +33,26 @@ function removeDir(filePath, callback) {
     if (err) {
       return console.log(err);
     }
+    // 如果目标为文件夹则继续递归，为文件则直接删除
     if (targetStatus.isDirectory()) {
       fs.readdir(filePath, function(err, dirs) {
+        // 读取当前路径，获取子目录或文件
         const childrenDirsPath = dirs.map(function(item) {
           return path.resolve(filePath, item);
         });
+        /**
+         * 重点！！！
+         * 如果当前路径没有子目录和子文件，则删除当前路径文件夹
+         */
+        // 建立临时变量保持索引
         let index = 0;
         function next() {
+          // 相同则说明当前路径已经清空所有子目录与文件，所以删除自身。
           if (index === childrenDirsPath.length) {
-            console.log(index);
             fs.rmdir(filePath, callback);
             return;
           }
+          // 递归调用removeDir，逻辑如上
           const currentDirPath = childrenDirsPath[index++];
           removeDir(currentDirPath, function() {
             next();
@@ -57,14 +66,68 @@ function removeDir(filePath, callback) {
   });
 }
 
-// removeDirSync(path.resolve(__dirname, "./c"));
+function removeDirByPromise(filePath) {
+  return fsPromise
+    .stat(filePath)
+    .then(function(state) {
+      console.log(filePath);
+
+      if (state.isDirectory()) {
+        return fsPromise.readdir(filePath);
+      } else {
+        fsPromise.unlink(filePath);
+      }
+    })
+    .then(function(data) {
+      const result = data.map(function(item) {
+        return path.resolve(filePath, item);
+      });
+      return Promise.all(result);
+    })
+    .then(function(data) {
+      console.log(data);
+      // data.forEach(function(item) {
+      //   fsPromise.rmdir(item)
+      //   removeDirByPromise(item);
+      // });
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+}
+
+async function removeDirByAsync(targetPath) {
+  const targetStatus = await fsPromise.stat(targetPath);
+  if (targetStatus.isDirectory()) {
+    const currentDir = await fsPromise.readdir(targetPath);
+    const currentDirPath = currentDir.map(item => {
+      return removeDirByAsync(path.resolve(targetPath, item));
+    });
+    await Promise.all(currentDirPath);
+    await fsPromise.rmdir(currentDirPath);
+  } else {
+    await fsPromise.unlink(targetPath);
+  }
+}
+
+removeDirByAsync(path.resolve(__dirname, "./c")).then(res => {
+  console.log("删除成功");
+});
+/* 
+removeDirSync(path.resolve(__dirname, "./c"));
 
 removeDir(path.resolve(__dirname, "./c"), function() {
   console.log("delete success");
 });
 
+removeDirByPromise(path.resolve(__dirname, "./c")).then(res => {
+  console.log(res);
+});
+ */
+
 /**
  * https://gitee.com/jw-speed/201905jiagouke/blob/master/10.fs/2.fs-rmdir.js
+ * https://juejin.im/post/5ab32b20518825557f00d36c
  * 1.检查是否存在
  * 2.判断目标是否为文件夹还是文件
  * 3.递归删除
