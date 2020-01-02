@@ -2,7 +2,7 @@ const fs = require("fs");
 const fsPromise = require("fs").promises;
 const path = require("path");
 
-// 同步删除文件夹，必须为空文件夹才能删除，递归至树叶节点，删除文件，或删除自身
+// 同步串行删除文件夹，必须为空文件夹才能删除，递归至树叶节点，删除文件，或删除自身
 function removeDirSync(filePath) {
   // 判断目标是否存在，
   const state = fs.statSync(filePath);
@@ -28,7 +28,8 @@ function removeDirSync(filePath) {
   return true;
 }
 
-function removeDir(filePath, callback) {
+// 回调异步串行
+function removeDirBySeries(filePath, callback) {
   fs.stat(filePath, function(err, targetStatus) {
     if (err) {
       return console.log(err);
@@ -66,6 +67,42 @@ function removeDir(filePath, callback) {
   });
 }
 
+// 回调异步并行paralle
+function removeDirByParalle(filePath, callback) {
+  fs.stat(filePath, function(err, stat) {
+    if (err) {
+      return console.log(err);
+    }
+    if (stat.isDirectory()) {
+      fs.readdir(filePath, function(err, dirs) {
+        // 如果当前目录没有文件夹，则直接删除自身
+        if (dirs.length === 0) {
+          return fs.rmdir(filePath, callback);
+        }
+        // 拼接子目录路径
+        const childrenDirsPath = dirs.map(item => {
+          return path.resolve(filePath, item);
+        });
+
+        
+        let index = 0;
+        function done() {
+          if (++index === childrenDirsPath.length) {
+            return fs.rmdir(filePath, callback);
+          }
+        }
+
+        childrenDirsPath.forEach(function(item) {
+          removeDirByParalle(item, done);
+        });
+      });
+    } else {
+      fs.unlink(filePath, callback);
+    }
+  });
+}
+
+// 异步并发
 function removeDirByPromise(filePath) {
   return fsPromise
     .stat(filePath)
@@ -110,10 +147,18 @@ async function removeDirByAsync(targetPath) {
   }
 }
 
-removeDirByAsync(path.resolve(__dirname, "./c")).then(res => {
+// 同步广度
+
+// 异步广度
+
+removeDirByParalle(path.resolve(__dirname, "./c"), function() {
   console.log("删除成功");
 });
 /* 
+removeDirByAsync(path.resolve(__dirname, "./c")).then(res => {
+  console.log("删除成功");
+});
+
 removeDirSync(path.resolve(__dirname, "./c"));
 
 removeDir(path.resolve(__dirname, "./c"), function() {
@@ -131,4 +176,5 @@ removeDirByPromise(path.resolve(__dirname, "./c")).then(res => {
  * 1.检查是否存在
  * 2.判断目标是否为文件夹还是文件
  * 3.递归删除
+ * 4.序、度
  */
