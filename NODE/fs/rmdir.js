@@ -103,46 +103,40 @@ function removeDirByParalle(filePath, callback) {
   });
 }
 
-// 异步并发
+// Promise实现异步并发
 function removeDirByPromise(filePath) {
-  return fsPromise
-    .stat(filePath)
-    .then(function(state) {
-      console.log(filePath);
-
+  return new Promise(function(resolve, reject) {
+    fs.stat(filePath, function(err, state) {
+      if (err) return reject(err);
       if (state.isDirectory()) {
-        return fsPromise.readdir(filePath);
+        fs.readdir(filePath, function(err, dirs) {
+          if (err) return reject(err);
+          dirs = dirs.map(function(dir) {
+            return removeDirByPromise(path.resolve(filePath, dir));
+          });
+          Promise.all(dirs).then(function() {
+            fs.rmdir(filePath, resolve);
+          });
+        });
       } else {
-        fsPromise.unlink(filePath);
+        fs.unlink(filePath, resolve);
       }
-    })
-    .then(function(data) {
-      const result = data.map(function(item) {
-        return path.resolve(filePath, item);
-      });
-      return Promise.all(result);
-    })
-    .then(function(data) {
-      console.log(data);
-      // data.forEach(function(item) {
-      //   fsPromise.rmdir(item)
-      //   removeDirByPromise(item);
-      // });
-    })
-    .catch(function(err) {
-      console.log(err);
     });
+  });
 }
 
+// async异步并行
 async function removeDirByAsync(targetPath) {
   const targetStatus = await fsPromise.stat(targetPath);
   if (targetStatus.isDirectory()) {
-    const currentDir = await fsPromise.readdir(targetPath);
-    const currentDirPath = currentDir.map(item => {
+    const currentDirChilds = await fsPromise.readdir(targetPath);
+    // 递归包装为promise
+    const currentDirPath = currentDirChilds.map(item => {
       return removeDirByAsync(path.resolve(targetPath, item));
     });
+    // 并行处理多个操作，完成后删除自己
     await Promise.all(currentDirPath);
-    await fsPromise.rmdir(currentDirPath);
+    await fsPromise.rmdir(targetPath);
   } else {
     await fsPromise.unlink(targetPath);
   }
@@ -151,11 +145,26 @@ async function removeDirByAsync(targetPath) {
 // 同步广度
 
 // 异步广度
+removeDirByPromise(path.resolve(__dirname, "./c"))
+  .then(function() {
+    console.log("删除成功");
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+/* 
+removeDirByAsync(path.resolve(__dirname, "./c"))
+  .then(function() {
+    console.log("删除成功");
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 
 removeDirByParalle(path.resolve(__dirname, "./c"), function() {
   console.log("删除成功");
 });
-/* 
+
 removeDirByAsync(path.resolve(__dirname, "./c")).then(res => {
   console.log("删除成功");
 });
@@ -164,10 +173,6 @@ removeDirSync(path.resolve(__dirname, "./c"));
 
 removeDir(path.resolve(__dirname, "./c"), function() {
   console.log("delete success");
-});
-
-removeDirByPromise(path.resolve(__dirname, "./c")).then(res => {
-  console.log(res);
 });
  */
 
