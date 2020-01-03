@@ -2,7 +2,7 @@ const fs = require("fs");
 const fsPromise = require("fs").promises;
 const path = require("path");
 
-// 同步串行删除文件夹，必须为空文件夹才能删除，递归至树叶节点，删除文件，或删除自身
+// 同步串行
 function removeDirSync(filePath) {
   // 判断目标是否存在，
   const state = fs.statSync(filePath);
@@ -84,16 +84,17 @@ function removeDirByParalle(filePath, callback) {
           return path.resolve(filePath, item);
         });
 
-        
+        // 当前作用域下建立标识
         let index = 0;
-        function done() {
-          if (++index === childrenDirsPath.length) {
-            return fs.rmdir(filePath, callback);
-          }
-        }
 
+        // 遍历子目录，由此开始递归进入
         childrenDirsPath.forEach(function(item) {
-          removeDirByParalle(item, done);
+          removeDirByParalle(item, function() {
+            // 如果儿子删除的个数与儿子数量相同，则说明儿子已经删除完毕，删除自身
+            if (++index === childrenDirsPath.length) {
+              return fs.rmdir(filePath, callback);
+            }
+          });
         });
       });
     } else {
@@ -173,6 +174,7 @@ removeDirByPromise(path.resolve(__dirname, "./c")).then(res => {
 /**
  * https://gitee.com/jw-speed/201905jiagouke/blob/master/10.fs/2.fs-rmdir.js
  * https://juejin.im/post/5ab32b20518825557f00d36c
+ * 必须为空文件夹才能删除，递归至树叶节点，删除文件，或删除自身
  * 1.检查是否存在
  * 2.判断目标是否为文件夹还是文件
  * 3.递归删除
