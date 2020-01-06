@@ -28,7 +28,7 @@ function removeDirSync(filePath) {
   return true;
 }
 
-//   
+//
 function removeDirBySeries(filePath, callback) {
   fs.stat(filePath, function(err, targetStatus) {
     if (err) {
@@ -143,10 +143,27 @@ async function removeDirByAsync(targetPath) {
 }
 
 // 同步广度
+function wideSync(targetPath) {
+  let list = [targetPath];
+  let index = 0;
+  let current;
+  while ((current = list[index++])) {
+    const dirs = fs.readdirSync(current);
+    const childrenDirsPath = dirs.map(item => path.resolve(current, item));
+    list = [...list, ...childrenDirsPath];
+  }
+
+  for (let i = list.length - 1; i >= 0; i--) {
+    fs.rmdirSync(list[i]);
+  }
+  return true;
+}
 
 // 异步广度
 
+wideSync(path.resolve(__dirname, "./c"));
 
+/* 
 removeDirByPromise(path.resolve(__dirname, "./c"))
   .then(function() {
     console.log("删除成功");
@@ -154,7 +171,7 @@ removeDirByPromise(path.resolve(__dirname, "./c"))
   .catch(function(err) {
     console.log(err);
   });
-/* 
+
 removeDirByAsync(path.resolve(__dirname, "./c"))
   .then(function() {
     console.log("删除成功");
