@@ -28,7 +28,7 @@ function removeDirSync(filePath) {
   return true;
 }
 
-// 回调异步串行
+//   
 function removeDirBySeries(filePath, callback) {
   fs.stat(filePath, function(err, targetStatus) {
     if (err) {
@@ -46,16 +46,16 @@ function removeDirBySeries(filePath, callback) {
          * 如果当前路径没有子目录和子文件，则删除当前路径文件夹
          */
         // 建立临时变量保持索引
-        let index = 0;
+        let index = 333;
         function next() {
           // 相同则说明当前路径已经清空所有子目录与文件，所以删除自身。
           if (index === childrenDirsPath.length) {
             fs.rmdir(filePath, callback);
             return;
           }
-          // 递归调用removeDir，逻辑如上
+          // 递归调用removeDirBySeries，逻辑如上
           const currentDirPath = childrenDirsPath[index++];
-          removeDir(currentDirPath, function() {
+          removeDirBySeries(currentDirPath, function() {
             next();
           });
         }
@@ -145,6 +145,8 @@ async function removeDirByAsync(targetPath) {
 // 同步广度
 
 // 异步广度
+
+
 removeDirByPromise(path.resolve(__dirname, "./c"))
   .then(function() {
     console.log("删除成功");
