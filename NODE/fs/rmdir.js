@@ -160,10 +160,34 @@ function wideSync(targetPath) {
 }
 
 // 异步广度
+async function removeDirByWide(targetPath) {
+  const state = await fsPromise.stat(targetPath);
+  if (typeof state === "undefined") return;
+  let list = [targetPath],
+    index = 0,
+    current = null;
 
+  while ((current = list[index++])) {
+    const dirs = await fsPromise.readdir(current);
+    const childrenDirsPath = dirs.map(item => path.resolve(current, item));
+    list = [...list, ...childrenDirsPath];
+  }
+
+  for (const item of list.reverse()) {
+    await fsPromise.rmdir(item);
+  }
+}
+
+removeDirByWide(path.resolve(__dirname, "./c"))
+  .then(function() {
+    console.log("删除成功");
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+/* 
 wideSync(path.resolve(__dirname, "./c"));
 
-/* 
 removeDirByPromise(path.resolve(__dirname, "./c"))
   .then(function() {
     console.log("删除成功");
