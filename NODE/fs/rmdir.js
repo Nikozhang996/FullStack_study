@@ -28,7 +28,7 @@ function removeDirSync(filePath) {
   return true;
 }
 
-//
+// 回调异步串行
 function removeDirBySeries(filePath, callback) {
   fs.stat(filePath, function(err, targetStatus) {
     if (err) {
@@ -103,7 +103,7 @@ function removeDirByParalle(filePath, callback) {
   });
 }
 
-// Promise实现异步并发
+// Promise异步并发
 function removeDirByPromise(filePath) {
   return new Promise(function(resolve, reject) {
     fs.stat(filePath, function(err, state) {
@@ -142,7 +142,7 @@ async function removeDirByAsync(targetPath) {
   }
 }
 
-// 同步广度
+// 同步广度优先
 function wideSync(targetPath) {
   let list = [targetPath];
   let index = 0;
@@ -159,7 +159,7 @@ function wideSync(targetPath) {
   return true;
 }
 
-// 异步广度
+// 异步广度优先
 async function removeDirByWide(targetPath) {
   const state = await fsPromise.stat(targetPath);
   if (typeof state === "undefined") return;
