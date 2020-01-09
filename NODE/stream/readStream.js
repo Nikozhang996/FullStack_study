@@ -1,14 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const EventEmitter = require("events");
 
-class ReadStream extends EventEmitter {
-  constructor() {
-    super();
-  }
-}
-
-console.log(ReadStream.prototype);
+const ReadStream = require("./SelfReadStream");
 
 const rs = new fs.ReadStream(path.resolve(__dirname, "./a.txt"), {
   enccoding: "utf8",
@@ -24,11 +17,9 @@ rs.on("error", function(error) {
   console.log(error);
 });
 rs.on("open", function(fd) {
-  // console.log(fd);
+  console.log(fd);
 });
 rs.on("data", function(buffer) {
-  console.log(buffer);
-
   data.push(buffer);
 });
 rs.on("end", function(fd) {
