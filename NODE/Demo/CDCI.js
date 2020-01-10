@@ -34,6 +34,7 @@ handler(FORM_PATH, TEACHING_PATH)
 async function handler(formPath, targetPath) {
   const { err, stdout, stderr } = await execFilePromise(
     path.resolve(__dirname, "./cdci.sh"),
+    [],
     {
       encoding: "utf-8"
     }
