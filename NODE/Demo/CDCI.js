@@ -2,11 +2,13 @@
  * https://www.jianshu.com/p/bf7206fba067
  */
 
+// module
 const fsPromise = require("fs").promises,
   path = require("path");
 const util = require("util");
-const { exec } = require("child_process"),
-  execPromise = util.promisify(exec);
+const { exec, execFile } = require("child_process"),
+  execPromise = util.promisify(exec),
+  execFilePromise = util.promisify(execFile);
 
 const FORM_PATH = path.resolve(
   process.env.USERPROFILE,
@@ -30,10 +32,14 @@ handler(FORM_PATH, TEACHING_PATH)
   });
 
 async function handler(formPath, targetPath) {
-  const { err, stdout, stderr } = await execPromise("git pull", {
-    encoding: "utf-8"
-  });
+  const { err, stdout, stderr } = await execFilePromise(
+    path.resolve(__dirname, "./cdci.sh"),
+    {
+      encoding: "utf-8"
+    }
+  );
 
+  console.log(err);
   console.log(stdout);
   return;
 
