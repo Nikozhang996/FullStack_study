@@ -4,7 +4,9 @@
 
 const fsPromise = require("fs").promises,
   path = require("path");
-const { exec } = require("child_process").promises;
+const util = require("util");
+const { exec } = require("child_process"),
+  execPromise = util.promisify(exec);
 
 const FORM_PATH = path.resolve(
   process.env.USERPROFILE,
@@ -19,16 +21,6 @@ const TARGET_PATH = path.resolve(
 const MAIN_FILE_REG = /^(main).*$/,
   TEACHING_HASH_REG = /(\/teaching\/main.[a-z,0-9]+.js+)/gi;
 
-// 输出当前目录（不一定是代码所在的目录）下的文件和文件夹
-// exec("git pull", { encoding: "utf-8" }, (err, stdout, stderr) => {
-//   if (err) {
-//     console.log(err);
-//     return;
-//   }
-//   console.log(`stdout: ${stdout}`);
-//   console.log(`stderr: ${stderr}`);
-// });
-
 handler(FORM_PATH, TEACHING_PATH)
   .then(function(res) {
     console.log(res);
@@ -38,7 +30,9 @@ handler(FORM_PATH, TEACHING_PATH)
   });
 
 async function handler(formPath, targetPath) {
-  const { err, stdout, stderr } = await exec("git pull");
+  const { err, stdout, stderr } = await execPromise("git pull", {
+    encoding: "utf-8"
+  });
 
   console.log(stdout);
   return;
