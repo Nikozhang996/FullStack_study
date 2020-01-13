@@ -1,12 +1,14 @@
 /**
  * https://www.jianshu.com/p/bf7206fba067
+ * https://stackoverflow.com/questions/22477111/nodejs-child-process-execfile-always-return-unknown-system-errno-193s
  */
 
 // module
 const fsPromise = require("fs").promises,
   path = require("path");
 const util = require("util");
-const { execFile } = require("child_process"),
+const { exec, execFile } = require("child_process"),
+  execPromise = util.promisify(exec),
   execFilePromise = util.promisify(execFile);
 
 const FORM_PATH = path.resolve(
@@ -32,9 +34,8 @@ handler(FORM_PATH, TARGET_PATH)
 
 async function handler(formPath, targetPath) {
   const [targetBranch, commitMessage] = process.argv.slice(2);
-  /* 
-  const { err: execErr, stdout: execStdout } = await execFilePromise(
-    // "./checkoutAndPull",
+
+  const checkoutAndPullStatus = await execFilePromise(
     path.resolve(__dirname, "./checkoutAndPull.sh"),
     [targetBranch || "test"],
     {
@@ -43,19 +44,20 @@ async function handler(formPath, targetPath) {
     }
   );
   execErr && Promise.reject(execErr);
-  console.log(execStdout);
- */
-  const { err, stdout, stderr } = await execFilePromise(
-    path.resolve(__dirname, "./commitAndPush.sh"),
-    [commitMessage || "update"],
+  console.log(checkoutAndPullStatus.stdout);
+  return checkoutAndPullStatus;
+  /* 
+  const test = await execFilePromise(
+    path.resolve(__dirname, "./cdci.sh"),
+    [targetBranch || "test", commitMessage || "update"],
     {
-      // cwd: targetPath,
+      cwd: targetPath,
       encoding: "utf-8"
     }
   );
 
-  console.log(stdout);
-  return true;
+  console.log(test);
+ */
 
   // 文件目录
   const formFile = await fsPromise.readdir(formPath),
