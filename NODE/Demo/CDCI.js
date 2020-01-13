@@ -6,8 +6,7 @@
 const fsPromise = require("fs").promises,
   path = require("path");
 const util = require("util");
-const { exec, execFile } = require("child_process"),
-  execPromise = util.promisify(exec),
+const { execFile } = require("child_process"),
   execFilePromise = util.promisify(execFile);
 
 const FORM_PATH = path.resolve(
@@ -23,7 +22,7 @@ const TARGET_PATH = path.resolve(
 const MAIN_FILE_REG = /^(main).*$/,
   TEACHING_HASH_REG = /(\/teaching\/main.[a-z,0-9]+.js+)/gi;
 
-handler(FORM_PATH, TEACHING_PATH)
+handler(FORM_PATH, TARGET_PATH)
   .then(function(res) {
     console.log(res);
   })
@@ -32,17 +31,31 @@ handler(FORM_PATH, TEACHING_PATH)
   });
 
 async function handler(formPath, targetPath) {
-  const { err, stdout, stderr } = await execFilePromise(
-    path.resolve(__dirname, "./cdci.sh"),
-    [],
+  const [targetBranch, commitMessage] = process.argv.slice(2);
+  /* 
+  const { err: execErr, stdout: execStdout } = await execFilePromise(
+    // "./checkoutAndPull",
+    path.resolve(__dirname, "./checkoutAndPull.sh"),
+    [targetBranch || "test"],
     {
+      cwd: targetPath,
+      encoding: "utf-8"
+    }
+  );
+  execErr && Promise.reject(execErr);
+  console.log(execStdout);
+ */
+  const { err, stdout, stderr } = await execFilePromise(
+    path.resolve(__dirname, "./commitAndPush.sh"),
+    [commitMessage || "update"],
+    {
+      // cwd: targetPath,
       encoding: "utf-8"
     }
   );
 
-  console.log(err);
   console.log(stdout);
-  return;
+  return true;
 
   // 文件目录
   const formFile = await fsPromise.readdir(formPath),
