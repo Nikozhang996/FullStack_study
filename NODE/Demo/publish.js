@@ -31,10 +31,8 @@ handler(FORM_PATH, TARGET_PATH)
   .catch(function(err) {
     console.log(err);
   });
-
 async function handler(formPath, targetPath) {
-  const [targetBranch, commitMessage] = process.argv.slice(2);
-
+  /* 
   const checkoutAndPullStatus = await execFilePromise(
     path.resolve(__dirname, "./checkoutAndPull.sh"),
     [targetBranch || "test"],
@@ -44,9 +42,8 @@ async function handler(formPath, targetPath) {
     }
   );
   execErr && Promise.reject(execErr);
-  console.log(checkoutAndPullStatus.stdout);
-  return checkoutAndPullStatus;
-  /* 
+  
+  
   const test = await execFilePromise(
     path.resolve(__dirname, "./cdci.sh"),
     [targetBranch || "test", commitMessage || "update"],
@@ -58,6 +55,13 @@ async function handler(formPath, targetPath) {
 
   console.log(test);
  */
+  const params = { cwd: targetPath, encoding: "utf-8" };
+  const [targetBranch, commitMessage] = process.argv.slice(2);
+
+  const a = await execPromise(`git checkout ${targetBranch || "test"}`, params);
+  const b = await execPromise(`git pull`, params);
+  console.log(`${targetBranch}分支git pull完成`);
+  return b.stdout;
 
   // 文件目录
   const formFile = await fsPromise.readdir(formPath),
