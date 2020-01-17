@@ -173,8 +173,10 @@ async function removeDirByWide(targetPath) {
     list = [...list, ...childrenDirsPath];
   }
 
+  console.log(list);
+
   for (const item of list.reverse()) {
-    await fsPromise.rmdir(item);
+    // await fsPromise.rmdir(item);
   }
 }
 
