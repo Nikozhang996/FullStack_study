@@ -19,6 +19,7 @@ class Server {
     let filePath = path.join(this.cwd, pathname);
 
     try {
+      // 若中途出错则
       const statObject = await fs.stat(filePath);
       if (statObject.isDirectory()) {
         filePath = path.join(filePath, "index.html");
@@ -55,12 +56,4 @@ class Server {
 
 const server = new Server({ port: 3000 });
 // const client = new Server({ port: 3000 });
-
 server.start();
-// server.start();
-/**
-const server = http.createServer(function(req, res) {
-  res.end('666666')
-});
-server.listen(3000);
- */
