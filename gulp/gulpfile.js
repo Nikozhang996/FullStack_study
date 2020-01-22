@@ -1,6 +1,8 @@
 /*
-        Gulp配置文件
-* */
+ * https://blog.csdn.net/qq_15096707/article/details/54293203
+ * https://www.jianshu.com/p/cc1cb9a5650c
+ * https://blog.csdn.net/qq_15096707/article/details/53582319
+ */
 const gulp = require("gulp"),
   sass = require("gulp-ruby-sass"), //Sass编译
   cssnano = require("gulp-cssnano"), //css压缩

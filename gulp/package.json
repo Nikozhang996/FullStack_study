@@ -18,6 +18,7 @@
     "gulp-ruby-sass": "^4.0.0"
   },
   "devDependencies": {
+    "gulp-htmlmin": "^5.0.1",
     "gulp-jshint": "^2.1.0",
     "jshint": "^2.11.0"
   },
