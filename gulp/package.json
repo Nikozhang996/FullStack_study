@@ -2,7 +2,7 @@
   "name": "gulp",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "gulpfile.js/index.js",
   "dependencies": {
     "del": "^5.1.0",
     "gulp": "^4.0.2",
@@ -23,7 +23,7 @@
     "jshint": "^2.11.0"
   },
   "scripts": {
-    "build": "gulpfile"
+    "build": "gulpfile.js"
   },
   "keywords": [],
   "author": "",
