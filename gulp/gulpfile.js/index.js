@@ -51,12 +51,123 @@ const PATH_MAP = {
   }
 };
 
-function watch() {
-  const res = gulp.watch(PATH_MAP.html.src);
-  res.on('change', function (path, stats) {
-    console.log(path);
-    console.log(stats);
+// BrowserSync
+function browserSync(done) {
+  browsersync.init({
+    server: {
+      baseDir: DIST_DIR
+    },
+    port: 3000
   });
+  done();
 }
 
+// BrowserSync Reload
+function browserSyncReload(done) {
+  browsersync.reload();
+  done();
+}
+
+// Clean assets
+function clean() {
+  return del(DIST_FILE);
+}
+
+// Optimize Images
+function images() {
+  return gulp
+    .src(PATH_MAP.img.src)
+    .pipe(newer(PATH_MAP.img.dist))
+    .pipe(
+      imagemin([
+        imagemin.gifsicle({interlaced: true}),
+        imagemin.mozjpeg({quality: 80, progressive: true}),
+        imagemin.optipng({optimizationLevel: 5}),
+        imagemin.svgo({
+          plugins: [
+            {
+              removeViewBox: false,
+              collapseGroups: true
+            }
+          ]
+        })
+      ])
+    )
+    .pipe(gulp.dest(PATH_MAP.img.dist));
+}
+
+// CSS task
+function css() {
+  return gulp
+    .src(PATH_MAP.css.src)
+    .pipe(plumber())
+    .pipe(sass({outputStyle: "expanded"}))
+    .pipe(gulp.dest(PATH_MAP.css.dist))
+    .pipe(rename({suffix: ".min"}))
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(gulp.dest(PATH_MAP.css.dist))
+    .pipe(browsersync.stream());
+}
+
+// Lint scripts
+function scriptsLint() {
+  return gulp
+    .src([PATH_MAP.js.src])
+    .pipe(plumber())
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+}
+
+// Transpile, concatenate and minify scripts
+function scripts() {
+  return (
+    gulp
+      .src(PATH_MAP.js.src)
+      .pipe(plumber())
+      // .pipe(webpackstream(webpackconfig, webpack))
+      // folder only, filename is specified in webpack config
+      .pipe(gulp.dest(PATH_MAP.js.dist))
+      .pipe(browsersync.stream())
+  );
+}
+
+// Jekyll
+function jekyll() {
+  return cp.spawn("bundle", ["exec", "jekyll", "build"], {stdio: "inherit"});
+}
+
+// Watch files
+function watchFiles() {
+  gulp.watch(PATH_MAP.css.src, css);
+  gulp.watch(PATH_MAP.js.src, gulp.series(scriptsLint, scripts));
+  gulp.watch(
+    [
+    //   "./_includes/**/*",
+    //   "./_layouts/**/*",
+    //   "./_pages/**/*",
+    //   "./_posts/**/*",
+    //   "./_projects/**/*"
+      DIST_FILE
+    ],
+    // gulp.series(jekyll, browserSyncReload)
+    browserSyncReload
+  );
+  gulp.watch(PATH_MAP.img.src, images);
+}
+
+// define complex tasks
+const js = gulp.series(scriptsLint, scripts);
+// const build = gulp.series(clean, gulp.parallel(css, images, jekyll, js));
+const build = gulp.series(clean, gulp.parallel(css, images, js));
+const watch = gulp.parallel(watchFiles, browserSync);
+// export tasks
+exports.images = images;
+exports.css = css;
+exports.js = js;
+exports.script = scripts;
+exports.jekyll = jekyll;
+exports.clean = clean;
+exports.build = build;
 exports.watch = watch;
+exports.default = build;
