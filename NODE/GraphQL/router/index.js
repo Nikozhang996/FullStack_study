@@ -22,5 +22,7 @@ router.get('/student', fetchStudent);
 router.get('/studentInfo', fetchStudentDetail);
 router.post('/savescourse', saveCourse);
 router.get('/course', fetchCourse);
-
+router.get('/', function (ctx) {
+  ctx.body = 'GraphQL';
+});
 module.exports = router;
