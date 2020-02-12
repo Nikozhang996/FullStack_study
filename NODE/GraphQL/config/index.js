@@ -1,9 +1,19 @@
 const router = require('koa-router')();
 
 // controllers
-const {saveInfo, fetchInfo} = require('../controllers/info');
-const {saveStudent, fetchStudent, fetchStudentDetail} = require('../controllers/student');
-const {saveCourse, fetchCourse} = require('../controllers/course');
+const {
+  saveInfo,
+  fetchInfo,
+  saveStudent,
+  fetchStudent,
+  fetchStudentDetail,
+  saveCourse,
+  fetchCourse
+} = require('../controllerso');
+
+// const {saveInfo, fetchInfo} = require('../controllers/info');
+// const {saveStudent, fetchStudent, fetchStudentDetail} = require('../controllers/student');
+// const {saveCourse, fetchCourse} = require('../controllers/course');
 
 router.post('/saveinfo', saveInfo);
 router.get('/info', fetchInfo);
