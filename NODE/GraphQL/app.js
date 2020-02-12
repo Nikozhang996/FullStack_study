@@ -12,7 +12,7 @@ require('./mongodb');
 const routerMap = require('./router');
 const {typeDefs, resolvers} = require('./graphql/schema');
 const apollo = new ApolloServer({typeDefs, resolvers});
-
+const PRON = 3000;
 // init
 const app = new Koa();
 const router = new KoaRouter();
@@ -27,8 +27,7 @@ app.use(router.allowedMethods());
 // 使用apollo
 app.use(apollo.getMiddleware());
 
-app.listen(4000, () => {
-  console.log('🚀 GraphQL-demo server listen at http://localhost:4000');
-  console.log(`🚀 Server ready at http://localhost:4000${apollo.graphqlPath}`);
+app.listen(PRON, () => {
+  console.log(`🚀 GraphQL-demo server listen at http://localhost:${PRON}`);
+  console.log(`🚀 Server ready at http://localhost:${PRON}${apollo.graphqlPath}`);
 });
-// 路由设置test
