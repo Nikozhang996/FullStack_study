@@ -2,6 +2,7 @@
  * https://github.com/naihe138/GraphQL-demo
  * https://juejin.im/post/5a49e5ccf265da430d585cfd
  * https://juejin.im/post/5ba0a27b5188255c6a043058
+ * https://cloud.tencent.com/developer/article/1466669
  * */
 const Koa = require('koa');
 const KoaStatic = require('koa-static');
