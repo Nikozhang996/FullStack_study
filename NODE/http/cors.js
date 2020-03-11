@@ -3,6 +3,7 @@
  * */
 const http = require("http");
 const zlib = require("zlib");
+const fs = require("fs");
 //跨域
 /*const server = http.createServer(function (req,res) {
   res.setHeader('Access-Control-Allow-Origin', ' http://localhost:3000');
@@ -21,14 +22,18 @@ const server = http.createServer(function(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', false);
 
   let data = Buffer.from('{name: "zjk", age: 20}');
-  res.end(
-    JSON.stringify(
-      zlib.unzip(data, function(err, data) {
-        console.log(err);
-        console.log(data);
-      })
-    )
-  );
+  fs.readFile('./my.txt', function (err, content) {
+    zlib.gzip(content, function (err, data) {
+      res.end(
+        JSON.stringify(
+          {
+            name: data
+          }
+        )
+      );
+    });
+  });
+
 });
 
 server.listen(4000, function() {
