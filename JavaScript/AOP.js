@@ -26,4 +26,4 @@ func = func
     console.log("after");
   });
 
-func()
+func();
