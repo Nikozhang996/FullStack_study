@@ -238,33 +238,24 @@ const data = [
   }
 ];
 
-function handler(targetId, sourceData) {
-  let temp = [];
-  function func(targetId, sourceData) {
-    if (temp.includes(targetId)) return temp;
+function handler(id, data) {
+  function func(targetId, prevData = [], sourceData = []) {
     for (let i = 0; i < sourceData.length; i++) {
       const item = sourceData[i];
       const { id, title, children } = item;
-
-      /* if (children == null || children == undefined) {
-          temp = [];
-        } */
       if (id === targetId) {
-        temp.push({ id, title });
-        break;
+        return [...prevData, { id, title }];
       }
-      if (Array.isArray(children) && id !== targetId) {
-        temp.push({ id, title });
-        func(targetId, children);
+      if (Array.isArray(children) && children.length > 0) {
+        prevData = [...prevData, { id, title }];
+        return func(targetId, prevData, children);
       }
     }
-  }
 
-  func(targetId, sourceData);
-  return temp;
+    return [];
+  }
+  return func(id, [], data);
 }
 
-const result = handler(45, data);
-
-// console.log(JSON.parse(JSON.stringify(data)));
-console.log(result);
+// console.log(handler(45, data));
+console.log(handler(405, data));
