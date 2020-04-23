@@ -22,17 +22,57 @@ const data = [
               { id: 235, title: "兼职C06组", children: null },
               { id: 236, title: "兼职C07组", children: null },
               { id: 237, title: "兼职C08组", children: null },
-              { id: 278, title: "兼职C09组", children: null }
-            ]
+              { id: 278, title: "兼职C09组", children: null },
+            ],
           },
-          { id: 344, title: "兼职demo管理组", children: null }
-        ]
-      }
-    ]
-  }
+          { id: 344, title: "兼职demo管理组", children: null },
+        ],
+      },
+    ],
+  },
 ];
 
-function handler(id, data) {
+function structureDFS(data, id) {
+  let path = [],
+    finded = false;
+  const fn = (data, id) => {
+    if (data instanceof Array) {
+      for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        path.push(item.id);
+        if (item.id === id) {
+          finded = true;
+          return;
+        }
+        fn(item.children, id);
+        if (finded === true) return;
+        path.pop();
+      }
+    }
+    return;
+  };
+  fn(data, id);
+  return path;
+}
+
+function structureDFS(data, id) {
+  if (data instanceof Array) {
+    for (let i = 0; i < data.length; i++) {
+      let item = data[i];
+      if (item.id === id) {
+        return [item.id];
+      } else {
+        let res = structureDFS(item.children || [], id);
+        if (res) {
+          return [item.id, ...res];
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function handler1(id, data) {
   function func(targetId, prevData = [], sourceData = []) {
     for (let i = 0; i < sourceData.length; i++) {
       const item = sourceData[i];
@@ -51,5 +91,24 @@ function handler(id, data) {
   return func(id, [], data);
 }
 
+function handler(targetId, sourceData) {
+  if (Array.isArray(sourceData)) {
+    for (let i = 0; i < sourceData.length; i++) {
+      const { id, title, children } = sourceData[i];
+
+      if (targetId === id) {
+        return [{ id, title }];
+      } else {
+        const result = handler(id, children || []);
+        if (result) {
+          return [{ id, title }, ...result];
+        }
+      }
+    }
+  } else {
+    return false;
+  }
+}
+
 // console.log(handler(45, data));
-console.log(handler(405, data));
+console.log(handler(45, data));
