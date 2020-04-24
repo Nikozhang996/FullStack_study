@@ -90,25 +90,51 @@ function handler1(id, data) {
   }
   return func(id, [], data);
 }
+{
+  function handler(targetId, sourceData) {
+    if (Array.isArray(sourceData)) {
+      for (let i = 0; i < sourceData.length; i++) {
+        const { id, title, children } = sourceData[i];
 
-function handler(targetId, sourceData) {
-  if (Array.isArray(sourceData)) {
-    for (let i = 0; i < sourceData.length; i++) {
-      const { id, title, children } = sourceData[i];
+        if (targetId === id) {
+          return [{ id, title }];
+        } else {
+          const result = handler(targetId, children || []);
+          if (result) {
+            return [{ id, title }, ...result];
+          }
+        }
+      }
+    } else {
+      return false;
+    }
+  }
 
-      if (targetId === id) {
-        return [{ id, title }];
-      } else {
-        const result = handler(id, children || []);
-        if (result) {
-          return [{ id, title }, ...result];
+  // console.log(handler(278, data));
+}
+
+{
+  function handler(targetId, sourceData) {
+    let path = [],
+      isFinded = false;
+
+    function func(targetId, sourceData) {
+      for (let i = 0; i < sourceData.length; i++) {
+        const { id, children } = sourceData[i];
+
+        if (id === targetId) {
+          isFinded = true;
+          paht = [...path, id];
+          return path;
+        }
+        if (isFinded === false) {
+          const result = func(targetId, children);
         }
       }
     }
-  } else {
-    return false;
-  }
-}
 
-// console.log(handler(45, data));
-console.log(handler(45, data));
+    func(targetId, sourceData);
+    return path;
+  }
+  console.log(handler(39, data));
+}
