@@ -2,6 +2,7 @@
  * https://www.runoob.com/nodejs/nodejs-event.html
  * https://github.com/forthealllight/blog/issues/21
  * https://www.jianshu.com/p/0bd5070dc294
+ * https://gitee.com/jw-speed/201905jiagouke/blob/master/8.core/events.js
  */
 const events = require("events");
 const fs = require("fs");
