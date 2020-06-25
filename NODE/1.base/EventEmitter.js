@@ -77,11 +77,24 @@ const eventEmitter = new events.EventEmitter();
     return eventEmitter;
   }
 
-  helloEvents("VLADIMIR")
-    .on("error", function (err) {
-      console.log("handleerror", err);
-    })
-    .on("hello", function (value) {
-      console.log(value);
-    });
+  // helloEvents("VLADIMIR")
+  //   .on("error", function (err) {
+  //     console.log("handleerror", err);
+  //   })
+  //   .on("hello", function (value) {
+  //     console.log(value);
+  //   });
+}
+
+// base
+{
+  const events = {
+    queue: [],
+    on(callback) {
+      this.queue.push(callback);
+    },
+    emit() {
+      this.queue.forEach((func) => func());
+    },
+  };
 }
