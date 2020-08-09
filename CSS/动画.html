@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        margin: 0 auto;
+        margin-top: 50px;
+        /* 简写 */
+        /* transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
+        /* 待修改的属性 */
+        transition-property: all;
+        /* 动画执行时间 */
+        transition-duration: 1s;
+        /* 动画延时 */
+        transition-delay: 10ms;
+        /* 动画预设 */
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+      .box:hover {
+        /* transform: translate(50%,50%); */
+        transform: scale(2,1);
+        transform: rotate(45deg);
+        /* transform: matrix(1, 2, 3, 4, 5, 6); */
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
