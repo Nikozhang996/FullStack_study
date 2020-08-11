@@ -74,14 +74,40 @@
         margin: 0 auto;
         margin-top: 200px;
       }
+
+      .item-title {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        background-color: #dddd;
+      }
+      .item-title:hover{
+        cursor: pointer;
+        background-color: #666666;
+      }
+      .item-title:hover ~.itembox{
+        /* background-color: blue; */
+        height: 100px;
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .itembox{
+        transition: all 0.2s linear;
+        /* transition-delay: 0.1s; */
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        /* visibility: hidden; */
+      }
     </style>
   </head>
   <body>
     <div class="menu">
       <div class="item">
-        <h3>A</h3>
+        <h3 class="item-title">A</h3>
         <div class="itembox">
-          <ul>
+          <ul class="item-content">
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
@@ -90,9 +116,9 @@
         </div>
       </div>
       <div class="item">
-        <h3>B</h3>
+        <h3 class="item-title">B</h3>
         <div class="itembox">
-          <ul>
+          <ul class="item-content">
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
@@ -101,9 +127,9 @@
         </div>
       </div>
       <div class="item">
-        <h3>C</h3>
+        <h3 class="item-title">C</h3>
         <div class="itembox">
-          <ul>
+          <ul class="item-content">
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
@@ -112,9 +138,9 @@
         </div>
       </div>
       <div class="item">
-        <h3>D</h3>
+        <h3 class="item-title">D</h3>
         <div class="itembox">
-          <ul>
+          <ul class="item-content">
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
             <li>深圳超市肉菜档遭抢</li>
