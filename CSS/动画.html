@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
+    <!-- <style>
       .box {
         width: 100px;
         height: 100px;
-        background-color: red;
         margin: 0 auto;
-        margin-top: 50px;
         /* 简写 */
         /* transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1); */
         /* 待修改的属性 */
@@ -24,14 +22,66 @@
       }
       .box:hover {
         /* transform: translate(50%,50%); */
-        transform: scale(2,1);
+        transform: scale(2, 1);
         transform: rotate(45deg);
         /* transform: matrix(1, 2, 3, 4, 5, 6); */
       }
-      
+    </style> -->
+    <style>
+      body {
+        background-color: #666666;
+      }
+      .box {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-top: 20px;
+      }
+      .box-1 {
+        background-color: #dddddd;
+        /* animation-name: move;
+        animation-duration: 2s;
+        animation-delay: 0;
+        animation-timing-function: linear;
+        animation-iteration-count: 1; */
+        animation: bigger 2s linear alternate both, move 1s alternate both;
+      }
+      .box-2 {
+        background-color: red;
+        animation: move 2s ease alternate both;
+      }
+      .box-3 {
+        background-color: green;
+        animation: move 2s ease-out alternate both;
+      }
+      .box-4 {
+        background-color: blue;
+        animation: move 2s ease-in alternate both;
+      }
+
+      @keyframes bigger {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(2);
+        }
+      }
+
+      @keyframes move {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(200px, 0);
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="box"></div>
+    <div class="box box-1"></div>
+    <div class="box box-2"></div>
+    <div class="box box-3"></div>
+    <div class="box box-4"></div>
   </body>
 </html>
