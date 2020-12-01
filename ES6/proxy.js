@@ -1,57 +1,32 @@
-/**
- * proxy
- * Reflect?
- * */
-const obj = {
-  name: 'zjk',
-  age: 20
-};
-
-const arr = [1, 2, 3, 4, 5];
-
-/* {
-  const objProxy = new Proxy(obj, {
-    get(target, key, value) {
-      if (key === undefined) {
-        return '没有指定key'
-      }
-      return `返回结果：${Reflect.get(target, key)}`;
+const obj = new Proxy(
+  {
+    name: "VLADIMIR",
+  },
+  {
+    get: function (target, prop, receiver) {
+      console.log(`getting ${prop}!`);
+      return Reflect.get(target, props, receiver);
     },
-    set(target, key, value) {
-      if (key === 'length') return true;
-      return Reflect.set(target, key, value);
+    set: function (target, prop, value, receiver) {
+      console.log(`setting ${prop}：${value}!`);
+      target.prop = value;
+      // return Reflect.set(target, prop, value, receiver);
     },
-  });
-
-  const arrProxy = new Proxy(arr, {
-    get(target, key, value) {
-      return key;
-    },
-    set(target, key, value) {
-      return Reflect.set(target, key, value);
-    },
-  });
-} */
-
-const proxy1 = new Proxy(obj, {
-  get(obj, key) {
-    if (!key in obj) {
-      return `key不存在`
-    }
-    if (key === undefined) {
-      return `未选择Key`
-    }
-
-    return obj.key
   }
-})
+);
 
+function createArray(...elements) {
+  let target = [...elements];
+  return new Proxy(target, {
+    get(target, propKey, receiver) {
+      let index = Number(propKey);
+      if (index < 0) {
+        propKey = String(target.length + index);
+      }
+      return Reflect.get(target, propKey, receiver);
+    },
+  });
+}
 
-const withZeroValue = (target, zeroValue = 0) => new Proxy(target, {
-  get: (obj, prop) => (prop in obj) ? obj[prop] : zeroValue
-})
-
-const newObj = withZeroValue(obj)
-
-// console.log(newObj.name, newObj.age, newObj.address);
-
+let arr = createArray("a", "b", "c");
+console.log(arr[-2]); // c
