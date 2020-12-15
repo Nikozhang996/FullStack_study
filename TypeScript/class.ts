@@ -1,16 +1,12 @@
-class Person {
-  #name: string;
+/* 
+ES6类，class，实例属性方法，原型属性方法，静态属性方法
+*/
 
-  constructor(name: string) {
-    this.#name = name;
-  }
-
-  greet() {
-    console.log(`hello ${this.#name}`);
+class Pointer {
+  public x!: number;
+  public y: number;
+  constructor(x: number, y?: number, ...args: number[]) {
+    this.x = x;
+    this.y = y;
   }
 }
-
-const vladimir = new Person("vladimir");
-
-vladimir.greet()
-// console.log();
