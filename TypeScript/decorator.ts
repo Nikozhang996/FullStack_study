@@ -1,10 +1,16 @@
-@annotation
-class MyClass {}
-
-function annotation(target) {
-  target.annotated = true;
+@addSay
+class Person {
+  say: Function;
 }
 
-const cls = new MyClass();
+function addSay(target: Function) {
+  target.prototype.say = function (value: string) {
+    console.log(value);
+  };
 
-console.log(cls);
+  console.log(target);
+}
+
+const per = new Person();
+
+per.say;
