@@ -1,4 +1,4 @@
-/* 
+/*
 类型保护，当一个联合类型无法被TS自动推导时，就需要用类似保护确保返回类型是可预期的
 
 https://www.cnblogs.com/karthuslorin/p/12834076.html
