@@ -19,6 +19,11 @@ https://gitee.com/jw-speed/jiagouke3-vue/tree/master/12.ts-lesson/src
 ## 类型推断
 
 ## 类型保护
+类型保护，当一个联合类型无法被TS自动推导时，就需要用类似保护确保返回类型是可预期的
+- typeof 操作符确定基本类型
+- in 操作符确定interface
+- as 断言强调认定
+- instanceof 确定class
 
 ## 交叉类型
 
