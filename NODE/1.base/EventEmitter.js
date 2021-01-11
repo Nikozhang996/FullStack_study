@@ -86,7 +86,7 @@ const eventEmitter = new events.EventEmitter();
   //   });
 }
 
-// base
+// base on-emit
 {
   const events = {
     queue: [],
