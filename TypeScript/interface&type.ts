@@ -62,7 +62,7 @@ const apple: IVegetables = {
 interface ISelf {
   name: string;
   age: number;
-  [key: string]: any;
+  [key: string]: any; // [key: string]
 }
 
 const obj: ISelf = {
@@ -131,6 +131,7 @@ interface IextendType extends TPartialPointX {
   y: number | string;
 }
 
+// 接口同名可以自动合并
 interface ImergePoint {
   x: number | string;
 }

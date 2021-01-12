@@ -1,6 +1,7 @@
 ## 参考资料
 
-https://gitee.com/jw-speed/jiagouke3-vue/tree/master/12.ts-lesson/src
+- [2020jiagouke3-vue](https://gitee.com/jw-speed/jiagouke3-vue/tree/master/12.ts-lesson/src)
+- [TypeScript - 一种思维方式](https://zhuanlan.zhihu.com/p/63346965)
 
 ## types 类型
 
@@ -13,17 +14,34 @@ https://gitee.com/jw-speed/jiagouke3-vue/tree/master/12.ts-lesson/src
 ## enum 枚举
 
 ## interface 接口
+- interface同名可以自动合并
 
 ## generic 泛型
 
+有时候在声明变量时无法确定类型，需要在调用时再指定类型则需要用<泛型>，类似于函数参数一般
+
+### 泛型类
+
+### 泛型接口
+
+可以在定义 interface 时设定泛型入口，调用时二次包装
+
+### 泛型约束
+
+使用`extends`关键字
+
 ## 类型推断
 
+默认在 TS 中，如果没有明确声明类型，TS 则会自动推导类型。这种推断发生在初始化变量和成员，设置默认参数值和决定函数返回值时。
+
 ## 类型保护
-类型保护，当一个联合类型无法被TS自动推导时，就需要用类似保护确保返回类型是可预期的
+
+类型保护，当一个联合类型无法被 TS 自动推导时，就需要用类似保护确保返回类型是可预期的
+
 - typeof 操作符确定基本类型
-- in 操作符确定interface
+- in 操作符确定 interface
 - as 断言强调认定
-- instanceof 确定class
+- instanceof 确定 class
 
 ## 交叉类型
 
