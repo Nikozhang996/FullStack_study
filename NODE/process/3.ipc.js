@@ -1,8 +1,8 @@
-const { spawn, fork } = require("child_process");
+const {spawn, fork} = require("child_process");
 const path = require("path");
 
 // fork默认使用node命令，但同时也就不能使用其他命令
-const cp = fork("sum.js", {
+const cp = fork("sum.js", ['a', 'b'], {
   cwd: path.resolve(__dirname, "./worker"),
   stdio: [0, 1, 2, "ipc"],
 });
