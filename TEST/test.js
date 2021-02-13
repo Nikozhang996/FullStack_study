@@ -71,3 +71,7 @@ function structureDFS(data, id) {
   }
   return false;
 }
+
+const reuslt = structureDFS(data, 278);
+
+console.log(reuslt);

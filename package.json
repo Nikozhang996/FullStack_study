@@ -5,7 +5,26 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^8.0.7",
     "koa-static": "^5.0.0",
-    "mongoose": "^5.8.11",
-    "nodemon": "^2.0.2"
-  }
+    "mongoose": "^5.8.11"
+  },
+  "name": "study-notes",
+  "description": "### 2018-7-23 str",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikozhang996/StudyNotes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikozhang996/StudyNotes/issues"
+  },
+  "homepage": "https://github.com/Nikozhang996/StudyNotes#readme"
 }

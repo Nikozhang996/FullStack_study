@@ -25,6 +25,7 @@ function toArray(value: number | string): number[] | string[] {
       .split("")
       .map((item) => parseInt(item));
   }
+  return [];
 }
 
 toArray(123);
