@@ -32,5 +32,8 @@ class Animal {
 }
 
 class Cat extends Animal {
-  constructor(parameters) {}
+  constructor(name: string, age: number, address: string) {
+    super(name, age);
+    
+  }
 }
