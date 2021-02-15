@@ -5,7 +5,7 @@ class Singleton {
   }
   static getInstance(name) {
     if (!this.instance) {
-      this.instance = new Singleton(name)
+      this.instance = new Singleton(name);
     }
     return this.instance;
   }
@@ -25,7 +25,6 @@ class Singleton2 {
     console.log(this.name);
   }
 }
-
 
 // let s1 = Singleton.getInstance('s1');
 // let s2 = Singleton.getInstance('s2');

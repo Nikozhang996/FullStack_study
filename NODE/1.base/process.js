@@ -36,9 +36,9 @@ setTimeout(() => {
 
 // 执行时间不定，需要看执行栈启动时间与定时器延迟时间，执行栈=>settimeout=>IO操作库
 setImmediate(function () {
-    console.log('immediate');
-})
+  console.log("immediate");
+});
 
 setTimeout(() => {
-    console.log('then');
+  console.log("then");
 }, 0);

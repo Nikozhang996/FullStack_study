@@ -10,7 +10,7 @@ const tableColumns = [
   { label: "申请人", prop: "refundApplyAdminUserName" },
   { label: "退费方式", prop: "refundMode" },
   { label: "退费时间", prop: "refundTime" },
-  { label: "操作人", prop: "refundOperator" }
+  { label: "操作人", prop: "refundOperator" },
 ];
 
 function tableColumnsHandler(source, config = {}, appendData = {}) {
@@ -48,11 +48,11 @@ let result = tableColumnsHandler(
     id: { width: 150, AAA: "custom", BBB: 6666 },
     refundTime: { width: 233, AAA: "custom", CCC: 233 },
     AAA: { width: 150 },
-    BBB: { width: 150 }
+    BBB: { width: 150 },
   },
   {
     prefix: [],
-    suffix: []
+    suffix: [],
   }
 );
 

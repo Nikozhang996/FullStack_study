@@ -19,7 +19,7 @@ function Module(id) {
 
 // exports = module.exports
 Module.wrapper = ["(function(exports,module,require){", "\n})"];
-Module.wrap = function(script) {
+Module.wrap = function (script) {
   const [start, end] = Module.wrapper;
   return start + script + end;
 };
@@ -38,9 +38,9 @@ Module._extensions = {
   ".txt"(module) {
     console.log(module);
     return;
-  }
+  },
 };
-Module._resolveFilename = function(relativePath) {
+Module._resolveFilename = function (relativePath) {
   const p = path.resolve(__dirname, relativePath); // 把转入的相对路径转为绝对路径
   const exists = fs.existsSync(p); // 如果有路径，则直接返回路径
   if (exists) {
@@ -62,7 +62,7 @@ Module._resolveFilename = function(relativePath) {
   return r;
 };
 Module._cache = {};
-Module.prototype.load = function(filename) {
+Module.prototype.load = function (filename) {
   let extension = path.extname(filename); // 获取文件后缀名
   Module._extensions[extension](this);
 };

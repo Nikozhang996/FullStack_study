@@ -5,10 +5,7 @@
 const crypto = require("crypto");
 
 function toMD5(val) {
-  return crypto
-    .createHash("md5")
-    .update(String(val))
-    .digest("base64");
+  return crypto.createHash("md5").update(String(val)).digest("base64");
 }
 
 console.log(toMD5(123456));

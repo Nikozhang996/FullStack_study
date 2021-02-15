@@ -1,4 +1,4 @@
-name = 'BIO卡洛斯'
+name = "BIO卡洛斯";
 
 {
   Function.prototype.mockApply = function (context) {
@@ -11,14 +11,14 @@ name = 'BIO卡洛斯'
     // 删除引用并返回
     delete context.fn;
     return r;
-  }
+  };
 
   const obj = {
-    name: 'zjk',
+    name: "zjk",
     fn(args) {
       return `${this.name}+${args}`;
-    }
-  }
+    },
+  };
 
   console.log(obj.fn.mockApply(global, [123, 321]));
 }

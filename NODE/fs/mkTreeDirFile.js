@@ -5,18 +5,18 @@ const path = require("path");
 function mkTreeDirFile(targetPath, config, callback) {
   console.log(targetPath);
 
-  const map = config.map(function(item) {
+  const map = config.map(function (item) {
     return { ...item, path: path.resolve(targetPath, item.name) };
   });
-  fs.access(targetPath, function(err, state) {
+  fs.access(targetPath, function (err, state) {
     if (err) {
-      fs.mkdir(targetPath, function(err) {
+      fs.mkdir(targetPath, function (err) {
         map.forEach(({ path, children }) => {
           Array.isArray(children) && mkTreeDirFile(path, children);
         });
       });
     } else {
-      map.forEach(item => {
+      map.forEach((item) => {
         Array.isArray(children) && mkTreeDirFile(item.path, item.children);
       });
     }
@@ -38,7 +38,7 @@ async function mkTreeDirFileAsync(targetPath, config) {
     await fsPromise.access(targetPath);
   } catch (error) {
     await fsPromise.mkdir(targetPath);
-    const mkdirPathArr = config.map(function(item) {
+    const mkdirPathArr = config.map(function (item) {
       return { ...item, path: path.resolve(targetPath, item.name) };
     });
   }
@@ -55,12 +55,12 @@ const pathMap = [
       {
         id: "c1",
         name: "C1",
-        type: "dir"
+        type: "dir",
       },
       {
         id: "c2",
         type: "file",
-        name: "C2"
+        name: "C2",
       },
       {
         id: "c3",
@@ -70,21 +70,21 @@ const pathMap = [
           {
             id: "e1",
             type: "file",
-            name: "E1"
+            name: "E1",
           },
           {
             id: "e2",
             type: "file",
-            name: "E2"
+            name: "E2",
           },
           {
             id: "e3",
             type: "file",
-            name: "E3"
-          }
-        ]
-      }
-    ]
+            name: "E3",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "d",
@@ -94,19 +94,19 @@ const pathMap = [
       {
         id: "d1",
         type: "file",
-        name: "D1"
+        name: "D1",
       },
       {
         id: "d2",
         type: "file",
-        name: "D2"
+        name: "D2",
       },
       {
         id: "d3",
         type: "file",
-        name: "D3"
-      }
-    ]
+        name: "D3",
+      },
+    ],
   },
   {
     id: "e",
@@ -116,23 +116,23 @@ const pathMap = [
       {
         id: "e1",
         type: "file",
-        name: "E1"
+        name: "E1",
       },
       {
         id: "e2",
         type: "file",
-        name: "E2"
+        name: "E2",
       },
       {
         id: "e3",
         type: "file",
-        name: "E3"
-      }
-    ]
-  }
+        name: "E3",
+      },
+    ],
+  },
 ];
 
-mkTreeDirFile(path.resolve(__dirname, "./test-dir"), pathMap, function() {
+mkTreeDirFile(path.resolve(__dirname, "./test-dir"), pathMap, function () {
   console.log("success");
 });
 

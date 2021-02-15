@@ -8,12 +8,12 @@ function Promise(executor) {
   // 专门存失败的回调
   _this.onRejectedCallbacks = [];
   // 保存当前Promise的状态（Promise有三个状态，pending,resolve,reject）
-  _this.status = 'pending';
+  _this.status = "pending";
   // 成功时的执行器
   function resolve(value) {
-    if (_this.status === 'pending') {
+    if (_this.status === "pending") {
       _this.value = value;
-      _this.status = 'resolved';
+      _this.status = "resolved";
       _this.onResolvedCallbacks.forEach(function (func) {
         func();
       });
@@ -21,9 +21,9 @@ function Promise(executor) {
   }
   // 失败的时的执行器
   function reject(reason) {
-    if (_this.status === 'pending') {
+    if (_this.status === "pending") {
       _this.reason = reason;
-      _this.status = 'rejected';
+      _this.status = "rejected";
       _this.onRejectedCallbacks.forEach(function (func) {
         func();
       });
@@ -34,14 +34,14 @@ function Promise(executor) {
 }
 Promise.prototype.then = function (onFulfilled, onRejected) {
   const _this = this;
-  if (_this.status === 'resolved') {
+  if (_this.status === "resolved") {
     onFulfilled(_this.value);
   }
-  if (_this.status === 'rejected') {
+  if (_this.status === "rejected") {
     onRejected(_this.reason);
   }
   // 如果executor中的异步操作，此时调用
-  if (_this.status === 'pending') {
+  if (_this.status === "pending") {
     _this.onResolvedCallbacks.push(function () {
       onFulfilled(_this.value);
     });
@@ -49,7 +49,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
       onRejected(_this.reason);
     });
   }
-}
+};
 module.exports = Promise;
 
 /**

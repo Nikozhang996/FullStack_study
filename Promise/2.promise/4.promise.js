@@ -8,12 +8,12 @@ function Promise(executor) {
   // 专门存失败的回调
   _this.onRejectedCallbacks = [];
   // 保存当前Promise的状态（Promise有三个状态，pending,resolve,reject）
-  _this.status = 'pending';
+  _this.status = "pending";
   // 成功时的执行器
   function resolve(value) {
-    if (_this.status === 'pending') {
+    if (_this.status === "pending") {
       _this.value = value;
-      _this.status = 'resolved';
+      _this.status = "resolved";
       _this.onResolvedCallbacks.forEach(function (func) {
         func();
       });
@@ -21,9 +21,9 @@ function Promise(executor) {
   }
   // 失败的时的执行器
   function reject(reason) {
-    if (_this.status === 'pending') {
+    if (_this.status === "pending") {
       _this.reason = reason;
-      _this.status = 'rejected';
+      _this.status = "rejected";
       _this.onRejectedCallbacks.forEach(function (func) {
         func();
       });
@@ -39,18 +39,22 @@ function Promise(executor) {
 // 解析链式调用的 （他还要和其他的promise进行结合）
 function resolvePromise(x, promise2, resolve, reject) {
   if (x === promise2) {
-    return reject(new TypeError('循环引用'));
+    return reject(new TypeError("循环引用"));
   }
   // 如果x是一个函数，或是一个对象，则有可能是promise
-  if (x !== null && (typeof x === 'function' || typeof x === 'object')) {
+  if (x !== null && (typeof x === "function" || typeof x === "object")) {
     try {
       let then = x.then;
-      if (typeof then === 'function') {
-        then.call(x, function (y) {
-          resolve(y);
-        }, function (r) {
-          reject(r);
-        })
+      if (typeof then === "function") {
+        then.call(
+          x,
+          function (y) {
+            resolve(y);
+          },
+          function (r) {
+            reject(r);
+          }
+        );
       } else {
         resolve(x);
       }
@@ -71,16 +75,16 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
    * 如果x是普通值就让返回的promise变成成功态
    */
   let promise2 = new Promise(function (resolve, reject) {
-    if (_this.status === 'resolved') {
+    if (_this.status === "resolved") {
       let x = onFulfilled(_this.value);
       resolvePromise(x, promise2, resolve, reject);
     }
-    if (_this.status === 'rejected') {
+    if (_this.status === "rejected") {
       let x = onRejected(_this.reason);
       resolvePromise(x, promise2, resolve, reject);
     }
     // 如果executor中的异步操作，此时调用
-    if (_this.status === 'pending') {
+    if (_this.status === "pending") {
       _this.onResolvedCallbacks.push(function () {
         let x = onFulfilled(_this.value);
         resolvePromise(x, promise2, resolve, reject);
@@ -92,7 +96,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
     }
   });
   return promise2;
-}
+};
 module.exports = Promise;
 
 /**

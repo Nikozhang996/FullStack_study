@@ -1,4 +1,4 @@
-const Promise = require('./3.promise');
+const Promise = require("./3.promise");
 
 const p = new Promise(function (resolve, reject) {
   setTimeout(() => {
@@ -12,6 +12,6 @@ p.then(function (data) {
   // return new Promise(function (resolve, reject) {
   //   resolve(1000);
   // })
-}).then(data => {
+}).then((data) => {
   console.log(data);
-})
+});

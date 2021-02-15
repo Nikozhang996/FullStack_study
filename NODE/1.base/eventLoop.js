@@ -22,26 +22,25 @@ setTimeout(() => {
     console.log(3);
 }, 0); */
 
-
 /* 
 注意：NODE与浏览器环境有所区别
  */
 
 let arr = new Array(999),
-    step = 0;
-arr.fill('BIO');
+  step = 0;
+arr.fill("BIO");
 
 function asyncForEach(array, callback) {
-    let index = 0;
-    let timer = setInterval(function () {
-        if (array.length === 0) {
-            clearInterval(timer);
-        } else {
-            callback(array.shift());
-        }
-    })
+  let index = 0;
+  let timer = setInterval(function () {
+    if (array.length === 0) {
+      clearInterval(timer);
+    } else {
+      callback(array.shift());
+    }
+  });
 }
 
-asyncForEach(arr, value => {
-    console.log(value + (++step));
-})
+asyncForEach(arr, (value) => {
+  console.log(value + ++step);
+});

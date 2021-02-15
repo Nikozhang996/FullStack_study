@@ -7,23 +7,23 @@
     // 保存调用call时传入的其他变量索引，arguments[i]
     let args = [];
     for (let i = 1; i < arguments.length; i++) {
-      args.push('arguments[' + i + ']');
+      args.push("arguments[" + i + "]");
     }
     // 执行fn函数并根据arguments[i]读取变量
-    let r = eval('context.fn(' + args + ')');
+    let r = eval("context.fn(" + args + ")");
 
     delete context.fn;
     return r;
-  }
+  };
 
   const obj = {
-    name: 'zjk',
+    name: "zjk",
     fn(...args) {
       return this.name + args;
-    }
-  }
+    },
+  };
 
-  name = 'BIO';
+  name = "BIO";
 
   function fn1() {
     console.log(1);
@@ -52,15 +52,14 @@
     // 删除引用并返回
     delete context.fn;
     return r;
-  }
+  };
 
   const obj = {
-    name: 'zjk',
+    name: "zjk",
     fn(...args) {
       return `${this.name}+${args}`;
-    }
-  }
+    },
+  };
 
   console.log(obj.fn.mockCall(global, 123, 321));
-
 }

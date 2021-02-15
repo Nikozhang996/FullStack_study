@@ -5,5 +5,5 @@ export default function debounce(func, time) {
     setTimeout(function () {
       func.apply(this, arguments);
     }, time);
-  }
+  };
 }

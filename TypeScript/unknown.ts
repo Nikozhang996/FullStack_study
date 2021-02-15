@@ -1,6 +1,6 @@
-// 
+//
 type t1 = unknown & number;
-// 
+//
 type t4 = unknown | string;
 
 // unknown , never 是unknown的子类型

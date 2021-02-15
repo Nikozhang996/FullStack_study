@@ -42,12 +42,12 @@ class Server {
   }
   start() {
     const server = http.createServer(this.handleRequest.bind(this));
-    server.on("error", function(err) {
+    server.on("error", function (err) {
       console.log(err);
     });
     server.listen(
       this.port,
-      function() {
+      function () {
         console.log(`服务器已运行于：${this.port}`);
       }.bind(this)
     );

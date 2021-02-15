@@ -5,9 +5,9 @@ let mkdir = util.promisify(fs.mkdir);
 
 // 手动实现一个promisify
 function promisify(fn) {
-  return function(param) {
+  return function (param) {
     return new Promise((res, rej) => {
-      fn(param, flag => {
+      fn(param, (flag) => {
         res(flag);
       });
     });

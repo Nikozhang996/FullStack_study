@@ -1,2 +1,2 @@
-let str = 'BIO卡洛斯'
+let str = "BIO卡洛斯";
 module.exports = str;

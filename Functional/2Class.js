@@ -44,7 +44,7 @@ class Person {
     this._address = addr;
   }
   toString() {
-    return `Person(${this._firstname},${this._firstname})`
+    return `Person(${this._firstname},${this._firstname})`;
   }
 }
 
@@ -72,11 +72,11 @@ class Student extends Person {
 }
 
 var curry = new Student(
-  'Haskell',
-  'Curry',
-  '111-11-1111',
-  'Pen State',
-  curry.address = new Address('US')
+  "Haskell",
+  "Curry",
+  "111-11-1111",
+  "Pen State",
+  (curry.address = new Address("US"))
 );
 
-console.log(Address)
+console.log(Address);

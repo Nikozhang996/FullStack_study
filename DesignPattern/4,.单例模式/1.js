@@ -3,15 +3,15 @@
  - 
  */
 class Window {
-    constructor(name) {
-        this.name = name;
+  constructor(name) {
+    this.name = name;
+  }
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new Window();
     }
-    static getInstance() {
-        if (!this.instance) {
-            this.instance = new Window();
-        }
-        return this.instance;
-    }
+    return this.instance;
+  }
 }
 
 let w1 = Window.getInstance();

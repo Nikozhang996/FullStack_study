@@ -25,10 +25,10 @@ const MAIN_FILE_REG = /^(main).*$/,
   TEACHING_HASH_REG = /(\/teaching\/main.[a-z,0-9]+.js+)/gi;
 
 handler(FORM_PATH, TARGET_PATH)
-  .then(function(res) {
+  .then(function (res) {
     console.log(res);
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log(err);
   });
 async function handler(formPath, targetPath) {
@@ -67,8 +67,8 @@ async function handler(formPath, targetPath) {
   const formFile = await fsPromise.readdir(formPath),
     targetFile = await fsPromise.readdir(targetPath);
   // 源、目标文件名
-  const formMainName = formFile.filter(file => file.match(MAIN_FILE_REG))[0],
-    targetMainName = targetFile.filter(file => file.match(MAIN_FILE_REG))[0];
+  const formMainName = formFile.filter((file) => file.match(MAIN_FILE_REG))[0],
+    targetMainName = targetFile.filter((file) => file.match(MAIN_FILE_REG))[0];
   // index.html内容
   let indexHtmlFile = await fsPromise.readFile(
     path.resolve(targetPath, "../index.html"),
@@ -131,7 +131,7 @@ async function copyFolder(formPath, targetPath) {
 async function removeFile(targetPath) {
   const fileUrls = await fsPromise.readdir(targetPath);
   fileUrls.length > 0 &&
-    fileUrls.map(function(item) {
+    fileUrls.map(function (item) {
       return fsPromise.unlink(path.resolve(targetPath, item));
     });
 }

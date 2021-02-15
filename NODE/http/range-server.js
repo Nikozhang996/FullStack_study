@@ -8,7 +8,7 @@ function getFileSize(filePath) {
 }
 
 const server = http
-  .createServer(function(req, res) {
+  .createServer(function (req, res) {
     let range = req.headers["range"];
     if (range) {
       let [, start, end] = range.match(/(\d*)-(\d*)/);

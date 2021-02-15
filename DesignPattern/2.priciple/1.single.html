@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=`, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=`, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>单一职责模式</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <form id="userform" action="">
-        <input data-validate="checkUsername" type="text" name="username" id="username">
-        <input data-validate="checkEmail" type="text" name="email" id="email">
-        <input data-validate="checkPassword" type="password" name="password" id="password">
-        <button onclick="check(123)" type="button">提交</button>
+      <input
+        data-validate="checkUsername"
+        type="text"
+        name="username"
+        id="username"
+      />
+      <input data-validate="checkEmail" type="text" name="email" id="email" />
+      <input
+        data-validate="checkPassword"
+        type="password"
+        name="password"
+        id="password"
+      />
+      <button onclick="check(123)" type="button">提交</button>
     </form>
 
     <script>
-        /* check */
-        function check(params) {
-            const form = document.querySelector('#userform'),
-                inputs = form.querySelectorAll('input');
+      /* check */
+      function check(params) {
+        const form = document.querySelector("#userform"),
+          inputs = form.querySelectorAll("input");
 
-            for (const item of inputs) {
-                let validate = item.dataset.validate;
-                let validateFn = window[validate];
+        for (const item of inputs) {
+          let validate = item.dataset.validate;
+          let validateFn = window[validate];
 
-                if (validateFn) {
-                    let error = validateFn(item);
-                    if (error) {
-                        return alert(error);
-                    }
-                }
+          if (validateFn) {
+            let error = validateFn(item);
+            if (error) {
+              return alert(error);
             }
+          }
         }
+      }
 
-        /* 校验用户名 */
-        function checkUsername(input) {
-            let {
-                value
-            } = input;
+      /* 校验用户名 */
+      function checkUsername(input) {
+        let { value } = input;
 
-            /* 
+        /* 
                 to check
              */
-        }
+      }
 
-        /* 校验邮箱 */
-        function checkEmail(input) {
-            let {
-                value
-            } = input;
+      /* 校验邮箱 */
+      function checkEmail(input) {
+        let { value } = input;
 
-            /* 
+        /* 
                 to check
              */
-        }
+      }
 
-        /* 校验密码 */
-        function checkPassword(input) {
-            let {
-                value
-            } = input;
+      /* 校验密码 */
+      function checkPassword(input) {
+        let { value } = input;
 
-            /* 
+        /* 
                 to check
             */
-        }
+      }
     </script>
-</body>
-
+  </body>
 </html>

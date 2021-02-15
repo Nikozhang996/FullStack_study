@@ -10,13 +10,13 @@ const num = (123).toString(2);
 const str = "张".charCodeAt().toString(2);
 
 function stringToBinary(value) {
-  return value.split("").map(item => {
+  return value.split("").map((item) => {
     return item.charCodeAt().toString(2);
   });
 }
 
 function binaryToString(value) {
-  return (Array.isArray(value) ? value : [value]).map(item => {
+  return (Array.isArray(value) ? value : [value]).map((item) => {
     return String.fromCharCode(parseInt(item, 2));
   });
 }

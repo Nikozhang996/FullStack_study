@@ -13,10 +13,10 @@ function removeDirSync(filePath) {
     const childrenDirs = fs.readdirSync(filePath);
     // 删除子目录
     childrenDirs
-      .map(function(item) {
+      .map(function (item) {
         return path.resolve(filePath, item);
       })
-      .forEach(item => {
+      .forEach((item) => {
         removeDirSync(item);
       });
     // 删除自身
@@ -30,15 +30,15 @@ function removeDirSync(filePath) {
 
 // 回调异步串行
 function removeDirBySeries(filePath, callback) {
-  fs.stat(filePath, function(err, targetStatus) {
+  fs.stat(filePath, function (err, targetStatus) {
     if (err) {
       return console.log(err);
     }
     // 如果目标为文件夹则继续递归，为文件则直接删除
     if (targetStatus.isDirectory()) {
-      fs.readdir(filePath, function(err, dirs) {
+      fs.readdir(filePath, function (err, dirs) {
         // 读取当前路径，获取子目录或文件
-        const childrenDirsPath = dirs.map(function(item) {
+        const childrenDirsPath = dirs.map(function (item) {
           return path.resolve(filePath, item);
         });
         /**
@@ -55,7 +55,7 @@ function removeDirBySeries(filePath, callback) {
           }
           // 递归调用removeDirBySeries，逻辑如上
           const currentDirPath = childrenDirsPath[index++];
-          removeDirBySeries(currentDirPath, function() {
+          removeDirBySeries(currentDirPath, function () {
             next();
           });
         }
@@ -69,18 +69,18 @@ function removeDirBySeries(filePath, callback) {
 
 // 回调异步并行paralle
 function removeDirByParalle(filePath, callback) {
-  fs.stat(filePath, function(err, stat) {
+  fs.stat(filePath, function (err, stat) {
     if (err) {
       return console.log(err);
     }
     if (stat.isDirectory()) {
-      fs.readdir(filePath, function(err, dirs) {
+      fs.readdir(filePath, function (err, dirs) {
         // 如果当前目录没有文件夹，则直接删除自身
         if (dirs.length === 0) {
           return fs.rmdir(filePath, callback);
         }
         // 拼接子目录路径
-        const childrenDirsPath = dirs.map(item => {
+        const childrenDirsPath = dirs.map((item) => {
           return path.resolve(filePath, item);
         });
 
@@ -88,8 +88,8 @@ function removeDirByParalle(filePath, callback) {
         let index = 0;
 
         // 遍历子目录，由此开始递归进入
-        childrenDirsPath.forEach(function(item) {
-          removeDirByParalle(item, function() {
+        childrenDirsPath.forEach(function (item) {
+          removeDirByParalle(item, function () {
             // 如果儿子删除的个数与儿子数量相同，则说明儿子已经删除完毕，删除自身
             if (++index === childrenDirsPath.length) {
               return fs.rmdir(filePath, callback);
@@ -105,16 +105,16 @@ function removeDirByParalle(filePath, callback) {
 
 // Promise异步并发
 function removeDirByPromise(filePath) {
-  return new Promise(function(resolve, reject) {
-    fs.stat(filePath, function(err, state) {
+  return new Promise(function (resolve, reject) {
+    fs.stat(filePath, function (err, state) {
       if (err) return reject(err);
       if (state.isDirectory()) {
-        fs.readdir(filePath, function(err, dirs) {
+        fs.readdir(filePath, function (err, dirs) {
           if (err) return reject(err);
-          dirs = dirs.map(function(dir) {
+          dirs = dirs.map(function (dir) {
             return removeDirByPromise(path.resolve(filePath, dir));
           });
-          Promise.all(dirs).then(function() {
+          Promise.all(dirs).then(function () {
             fs.rmdir(filePath, resolve);
           });
         });
@@ -131,7 +131,7 @@ async function removeDirByAsync(targetPath) {
   if (targetStatus.isDirectory()) {
     const currentDirChilds = await fsPromise.readdir(targetPath);
     // 递归包装为promise
-    const currentDirPath = currentDirChilds.map(item => {
+    const currentDirPath = currentDirChilds.map((item) => {
       return removeDirByAsync(path.resolve(targetPath, item));
     });
     // 并行处理多个操作，完成后删除自己
@@ -149,7 +149,7 @@ function wideSync(targetPath) {
   let current;
   while ((current = list[index++])) {
     const dirs = fs.readdirSync(current);
-    const childrenDirsPath = dirs.map(item => path.resolve(current, item));
+    const childrenDirsPath = dirs.map((item) => path.resolve(current, item));
     list = [...list, ...childrenDirsPath];
   }
 
@@ -169,7 +169,7 @@ async function removeDirByWide(targetPath) {
 
   while ((current = list[index++])) {
     const dirs = await fsPromise.readdir(current);
-    const childrenDirsPath = dirs.map(item => path.resolve(current, item));
+    const childrenDirsPath = dirs.map((item) => path.resolve(current, item));
     list = [...list, ...childrenDirsPath];
   }
 
@@ -181,10 +181,10 @@ async function removeDirByWide(targetPath) {
 }
 
 removeDirByWide(path.resolve(__dirname, "./c"))
-  .then(function() {
+  .then(function () {
     console.log("删除成功");
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log(err);
   });
 /* 

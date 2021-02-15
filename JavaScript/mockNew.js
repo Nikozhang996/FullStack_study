@@ -14,14 +14,14 @@ function Person(name, age) {
 
 function mockNew() {
   var Constructor = [].shift.call(arguments);
-  var obj = {}
+  var obj = {};
   obj.__proto__ = Constructor.prototype;
   var r = Constructor.apply(obj, arguments);
   return r instanceof Object ? r : obj;
 }
 
 // let person = new Person('zjk', 20);
-let person = mockNew(Person, 'zjk', 20);
+let person = mockNew(Person, "zjk", 20);
 
 console.log(person);
 

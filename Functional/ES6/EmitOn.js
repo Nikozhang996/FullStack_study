@@ -6,12 +6,12 @@ const readFileEvent = new event.EventEmitter(); //创建事件对象
 // 发布订阅
 {
   // 订阅者
-  readFileEvent.on('success_1', data => {
-    console.log('success_1');
-    readFileEvent.emit('success_2', data);
+  readFileEvent.on("success_1", (data) => {
+    console.log("success_1");
+    readFileEvent.emit("success_2", data);
   });
-  readFileEvent.on('success_2', data => {
-    console.log('success_2');
+  readFileEvent.on("success_2", (data) => {
+    console.log("success_2");
     console.log(data);
   });
   // event.all('success_2', 'success_2', (sub1, sub2) => {
@@ -20,7 +20,7 @@ const readFileEvent = new event.EventEmitter(); //创建事件对象
   // });
 
   // 发布者
-  fs.readFile(path.resolve('./1.txt'), (err, data) => {
+  fs.readFile(path.resolve("./1.txt"), (err, data) => {
     // console.log(err);
     // readFileEvent.emit('success_1', data);
   });
@@ -35,29 +35,16 @@ const readFileEvent = new event.EventEmitter(); //创建事件对象
       if (Object.keys(map).length === times) {
         callback(map);
       }
-    }
-  }
+    };
+  };
 
   let done = after(2, function (res) {
     console.log(Object.values(res));
   });
 
-  done('data_1', 1);
-  done('data_2', 2);
+  done("data_1", 1);
+  done("data_2", 2);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * 参考资料

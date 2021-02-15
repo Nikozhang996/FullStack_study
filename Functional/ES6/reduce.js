@@ -3,49 +3,49 @@ const users = [
   {
     firstName: "Bob",
     lastName: "Doe",
-    age: 37
+    age: 37,
   },
   {
     firstName: "Rita",
     lastName: "Smith",
-    age: 21
+    age: 21,
   },
   {
     firstName: "Rick",
     lastName: "Fish",
-    age: 28
+    age: 28,
   },
   {
     firstName: "Betty",
     lastName: "Bird",
-    age: 44
+    age: 44,
   },
   {
     firstName: "Joe",
     lastName: "Grover",
-    age: 22
+    age: 22,
   },
   {
     firstName: "Jill",
     lastName: "Pill",
-    age: 19
+    age: 19,
   },
   {
     firstName: "Sam",
     lastName: "Smith",
-    age: 22
-  }
+    age: 22,
+  },
 ];
 
 /* 直接使用回调函数 */
 {
   const result = users
     // 首先筛选岁月在[20,30]之间
-    .filter(user => user.age >= 20 && user.age <= 30)
+    .filter((user) => user.age >= 20 && user.age <= 30)
     // 然后作姓名拼接
-    .map(user => `${user.firstName}-${user.lastName}`)
+    .map((user) => `${user.firstName}-${user.lastName}`)
     // 筛选名称长度小于10的
-    .filter(name => name.length < 10);
+    .filter((name) => name.length < 10);
 }
 
 /* 独立抽象函数，方便测试 */
@@ -107,16 +107,16 @@ const users = [
   const fruits = [
     {
       name: "apples",
-      quantity: 2
+      quantity: 2,
     },
     {
       name: "bananas",
-      quantity: 0
+      quantity: 0,
     },
     {
       name: "cherries",
-      quantity: 5
-    }
+      quantity: 5,
+    },
   ];
   const result = fruits.reduce((total, item) => {
     total += item.quantity;
@@ -131,16 +131,16 @@ const users = [
   const arr = [
     {
       price: 1,
-      count: 2
+      count: 2,
     },
     {
       price: 2,
-      count: 3
+      count: 3,
     },
     {
       price: 3,
-      count: 5
-    }
+      count: 5,
+    },
   ];
 
   const result = arr.reduce(
@@ -156,29 +156,29 @@ const users = [
     {
       a: 123,
       b: 243,
-      c: 43
+      c: 43,
     },
     {
       a: 123,
       b: 243,
-      c: 43
+      c: 43,
     },
     {
       a: 123,
       b: 243,
-      c: 43
+      c: 43,
     },
     {
       a: 123,
       b: 243,
-      c: 43
-    }
+      c: 43,
+    },
   ];
 
   function fn(...args) {
     function handleReduceDefaultValue(params) {
       let temp = params.constructor;
-      args.forEach(item => (temp[item] = 0));
+      args.forEach((item) => (temp[item] = 0));
       return temp;
     }
     return arr.reduce((result, item, index, arr) => {
@@ -206,20 +206,20 @@ const users = [
       id: 1,
       username: "john",
       sex: 1,
-      email: "john@163.com"
+      email: "john@163.com",
     },
     {
       id: 2,
       username: "jerry",
       sex: 1,
-      email: "jerry@163.com"
+      email: "jerry@163.com",
     },
     {
       id: 3,
       username: "nancy",
       sex: 0,
-      email: ""
-    }
+      email: "",
+    },
   ];
 
   function func(arr, key = "id") {
@@ -232,10 +232,10 @@ const users = [
   }
 
   function keyBy(arr, key = "id") {
-    return arr.reduce(function(result, item, index, arr) {
+    return arr.reduce(function (result, item, index, arr) {
       return {
         ...result,
-        [item[key]]: item
+        [item[key]]: item,
       };
     }, {});
   }
@@ -250,7 +250,7 @@ const users = [
     "Inspector Baynes,Inspector Bradstreet,Inspector Sam Brown",
     "Monsieur Dubugue,Birdy Edwards,Inspector Forbes,Inspector Forrester",
     "Inspector Gregory,Inspector Tobias Gregson,Inspector Hill",
-    "Inspector Stanley Hopkins,Inspector Athelney Jones"
+    "Inspector Stanley Hopkins,Inspector Athelney Jones",
   ];
 
   function func(arr) {

@@ -45,9 +45,9 @@ interface Bird {
 
 function getType(animal: Fish | Bird) {
   if ("swiming" in animal) {
-    return 'fish'
+    return "fish";
   } else {
-    return 'bird'
+    return "bird";
   }
 }
 

@@ -3,7 +3,7 @@ class Plant {
     this.name = name;
   }
   grow() {
-    console.log('我正在生长~');
+    console.log("我正在生长~");
   }
 }
 
@@ -31,24 +31,24 @@ class Lemon extends Plant {
 class Factory {
   static create(type) {
     switch (type) {
-      case 'apple':
-        return new Apple('苹果', '甜');
+      case "apple":
+        return new Apple("苹果", "甜");
         break;
-      case 'orange':
-        return new Apple('桔子', '酸');
+      case "orange":
+        return new Apple("桔子", "酸");
         break;
-      case 'lemon':
-        return new Apple('柠檬', '酸');
+      case "lemon":
+        return new Apple("柠檬", "酸");
         break;
       default:
-        throw new Error('你需要的东西我没有。')
+        throw new Error("你需要的东西我没有。");
     }
   }
 }
 
-const apple = Factory.create('apple');
-const orange = Factory.create('orange');
-const lemon = Factory.create('lemon');
+const apple = Factory.create("apple");
+const orange = Factory.create("orange");
+const lemon = Factory.create("lemon");
 
 console.log(apple);
 console.log(orange);

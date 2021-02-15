@@ -8,10 +8,8 @@
   // Function.prototype.mockBind = function (context) {
   //   // 保存调用者的引用
   //   var that = this;
-
   //   // 保存绑定时传入的变量
   //   var outArgs = Array.prototype.slice.call(arguments, 1);
-
   //   var func = function () {
   //     // 保存调用时的参数
   //     var innerArgs = Array.prototype.slice.call(arguments);
@@ -32,8 +30,11 @@
     const [context, ...outArgs] = args;
     // 不能使用箭头函数，因为箭头函数无法被实例化
     const func = function (...innerArgs) {
-      return that.apply(this instanceof func ? this : context, [...outArgs, ...innerArgs]);
-    }
+      return that.apply(this instanceof func ? this : context, [
+        ...outArgs,
+        ...innerArgs,
+      ]);
+    };
 
     const concatFn = function () {};
 
@@ -41,20 +42,20 @@
     func.prototype = new concatFn();
 
     return func;
-  }
+  };
 }
 
-global.name = 'BIO';
+global.name = "BIO";
 const obj = {
-  name: 'zjk'
-}
+  name: "zjk",
+};
 
 function logName(age, arg) {
   // return this.name + '：' + age + '：' + arg;
   this.age = age;
   this.arg = arg;
 }
-logName.prototype.props = 'this is a props'
+logName.prototype.props = "this is a props";
 
 const bindFn = logName.mockBind(obj, 666);
 // const bindFn = logName.bind(obj, 666);

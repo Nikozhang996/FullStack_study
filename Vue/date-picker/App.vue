@@ -5,27 +5,27 @@
 </template>
 
 <script>
-  import DatePicker from "./components/DatePicker";
+import DatePicker from "./components/DatePicker";
 
-  export default {
-    components: {
-      DatePicker
+export default {
+  components: {
+    DatePicker,
+  },
+  props: {},
+  data() {
+    return {};
+  },
+  methods: {
+    func() {
+      console.log(this);
     },
-    props: {},
-    data() {
-      return {};
-    },
-    methods: {
-      func() {
-        console.log(this);
-      }
-    }
-  };
+  },
+};
 </script>
 
 <style lang="stylus">
-  body {
-    color: #ffffff;
-    background-color: #666666;
-  }
+body {
+  color: #ffffff;
+  background-color: #666666;
+}
 </style>

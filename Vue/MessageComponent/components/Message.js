@@ -3,8 +3,8 @@ import MessageComponent from "./Message.vue";
 // 获取当前组件的实例
 let getInstance = () => {
   let vm = new Vue({
-    info: {a: 1},
-    render: h => h(MessageComponent)
+    info: { a: 1 },
+    render: (h) => h(MessageComponent),
   }).$mount(); // 会在内存中进行挂载
   // 获取他的儿子，就一个儿子
   let component = vm.$children[0];
@@ -12,7 +12,7 @@ let getInstance = () => {
     add(options) {
       component.add(options);
       // console.log(component);
-    }
+    },
   };
   // vm.$el
 };
@@ -35,9 +35,9 @@ const Message = {
   },
   error(options) {
     console.log(options);
-  }
+  },
 };
-export {Message};
+export { Message };
 let _Vue;
 export default {
   // 写插件的原理
@@ -47,7 +47,7 @@ export default {
       // 防止用户多次use
       _Vue = Vue;
       let $message = {};
-      Object.keys(Message).forEach(type => {
+      Object.keys(Message).forEach((type) => {
         $message[type] = Message[type];
       });
       Vue.prototype.$message = $message;
@@ -63,7 +63,7 @@ export default {
           console.log(this.$options.name);
           this._info = this.$parent && this.$parent._info;
         }
-      }
+      },
     });
-  }
+  },
 };

@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>防抖与节流</title>
-  <style>
-    .box {
-      width: 100px;
-      height: 100px;
-      background-color: black;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="box"></div>
-
-
-
-  <script>
-    function debounce(func, timeout) {
-      let timer = null;
-      clearTimeout(timer);
-      return function () {
-        timer = setTimeout(function () {
-          func.apply(this, arguments);
-        }, timeout);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>防抖与节流</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        border-radius: 50%;
+        cursor: pointer;
       }
-    }
+    </style>
+  </head>
 
-    const fn = debounce(function () {
-      console.log(this);
-    }, 500);
+  <body>
+    <div class="box"></div>
 
-    const ele = document.querySelector('.box');
+    <script>
+      function debounce(func, timeout) {
+        let timer = null;
+        clearTimeout(timer);
+        return function () {
+          timer = setTimeout(function () {
+            func.apply(this, arguments);
+          }, timeout);
+        };
+      }
 
-    ele.addEventListener('click', fn, false);
-  </script>
-</body>
+      const fn = debounce(function () {
+        console.log(this);
+      }, 500);
 
+      const ele = document.querySelector(".box");
+
+      ele.addEventListener("click", fn, false);
+    </script>
+  </body>
 </html>

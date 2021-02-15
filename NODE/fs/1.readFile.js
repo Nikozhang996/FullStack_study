@@ -5,7 +5,7 @@ function name(params) {
   // 同步方法
   const resSync = fs.readFileSync(path.join(__dirname, "temp.js"), {
     encoding: "utf-8",
-    flag: "r"
+    flag: "r",
   });
 
   //  异步方法
@@ -14,9 +14,9 @@ function name(params) {
     path.join(__dirname, "temp.js"),
     {
       encoding: "utf-8",
-      flag: "r"
+      flag: "r",
     },
-    function(err, data) {
+    function (err, data) {
       if (!err) {
         console.log(data);
         read = data;

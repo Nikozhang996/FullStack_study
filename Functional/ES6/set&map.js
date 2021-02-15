@@ -1,37 +1,36 @@
 /* Set */
-const set = new Set([1, 1, 1, 2, 3, 4, 6, 7, 6, 5, 4, ]);
+const set = new Set([1, 1, 1, 2, 3, 4, 6, 7, 6, 5, 4]);
 
 // 添加
 set.add(99);
 // 删除
-set.delete(1)
+set.delete(1);
 
 // 迭代遍历
 for (const [key, value] of set.entries()) {
-    if (key == 2) {
-
-    }
+  if (key == 2) {
+  }
 }
 
 // 数组求并集
 function union(arr1, arr2) {
-    return [...new Set([...arr1, ...arr2])]
+  return [...new Set([...arr1, ...arr2])];
 }
 // console.log(union([1,2,3],[2,3,4,5]));
 
 // 数组求交集
 function insetction(arr1, arr2) {
-    return [...new Set(arr1)].filter(item => {
-        return new Set(arr2).has(item);
-    })
+  return [...new Set(arr1)].filter((item) => {
+    return new Set(arr2).has(item);
+  });
 }
 // console.log(insetction([1, 1, 2, 3], [2, 3, 4, 4, 5]));
 
 // 数组求差值
 function diffrence(arr1, arr2) {
-    return Array.from(new Set(arr1)).filter(item => {
-        return !new Set(arr2).has(item);
-    });
+  return Array.from(new Set(arr1)).filter((item) => {
+    return !new Set(arr2).has(item);
+  });
 }
 // console.log(diffrence([1, 2, 3], [2, 3, 4, 5]));
 
@@ -39,7 +38,7 @@ function diffrence(arr1, arr2) {
 
 /* Map */
 const map = new Map();
-map.set('js', 'node');
-map.set('js', 'ES6');
+map.set("js", "node");
+map.set("js", "ES6");
 
 console.log(map);

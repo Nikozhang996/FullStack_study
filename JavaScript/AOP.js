@@ -1,28 +1,28 @@
-Function.prototype.after = function(action) {
+Function.prototype.after = function (action) {
   const func = this;
-  return function() {
+  return function () {
     const result = func.apply(this, arguments);
     action.apply(this, arguments);
     return result;
   };
 };
 
-Function.prototype.before = function(action) {
+Function.prototype.before = function (action) {
   const func = this;
-  return function() {
+  return function () {
     action.apply(this, arguments);
     return func.apply(this, arguments);
   };
 };
 
-let func = function() {
+let func = function () {
   console.log("render");
 };
 func = func
-  .before(function() {
+  .before(function () {
     console.log("before");
   })
-  .after(function() {
+  .after(function () {
     console.log("after");
   });
 

@@ -10,12 +10,12 @@ server.on("request", (req, res) => {
   console.log(req.url); // 请求的路径，https://xxxx.com:80/?a=1#top
   console.log(req.httpVersion); // 请求的HTTP版本号
   console.log(req.headers); // 请求头，所有值都是小写（NODE默认）
-  req.on("data", function(data) {
+  req.on("data", function (data) {
     // 请求体
     console.log(data);
   });
 
-  req.on("end", function() {
+  req.on("end", function () {
     console.log("end");
     res.statusCode = 200; // 返回响应码
     res.setHeader("Content-Type", "text/html"); // 设置响应头
@@ -24,6 +24,6 @@ server.on("request", (req, res) => {
   });
 });
 
-server.listen(3000, function() {
+server.listen(3000, function () {
   console.log("服务器已开启，端口号为3000");
 });

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 // 学生附加信息
 const InfoSchema = new Schema({
@@ -11,22 +11,22 @@ const InfoSchema = new Schema({
   meta: {
     createdAt: {
       type: Date,
-      default: Date.now()
+      default: Date.now(),
     },
     updatedAt: {
       type: Date,
-      default: Date.now()
-    }
-  }
-})
+      default: Date.now(),
+    },
+  },
+});
 
-InfoSchema.pre('save', function (next) {
+InfoSchema.pre("save", function (next) {
   if (this.isNew) {
-    this.meta.createdAt = this.meta.updatedAt = Date.now()
+    this.meta.createdAt = this.meta.updatedAt = Date.now();
   } else {
-    this.meta.updatedAt = Date.now()
+    this.meta.updatedAt = Date.now();
   }
-  next()
-})
+  next();
+});
 
-mongoose.model('Info', InfoSchema)
+mongoose.model("Info", InfoSchema);

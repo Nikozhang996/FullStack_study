@@ -8,12 +8,12 @@ const server = http.createServer((req, res) => {
 
   let arr = [];
 
-  req.on("data", data => {
+  req.on("data", (data) => {
     console.log(data);
     arr.push(data);
   });
 
-  req.on("end", params => {
+  req.on("end", (params) => {
     let temp = Buffer.concat(arr).toString("utf-8");
 
     const ContentType = req.headers["content-type"];

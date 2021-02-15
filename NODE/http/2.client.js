@@ -7,12 +7,12 @@ const opts = {
   headers: {
     a: 1,
     "Content-Type": "x-www-form-urlencoded",
-    "Content-Length": 3
-  }
+    "Content-Length": 3,
+  },
 };
 
-const client = http.request(opts, res => {
-  res.on("data", data => {
+const client = http.request(opts, (res) => {
+  res.on("data", (data) => {
     console.log(`服务器返回${data.toString()}`);
   });
 });

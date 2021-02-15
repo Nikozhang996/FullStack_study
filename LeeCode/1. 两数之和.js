@@ -59,21 +59,19 @@ const twoSum3 = function (nums, target, i = 0, maps = {}) {
 
   //
   if (map[target - nums[i]] >= 0) {
-    return [map[target - nums[i]], i]
+    return [map[target - nums[i]], i];
   } else {
     map[nums[i]] = i;
     i++;
 
     if (i < nums.length - 1) {
-      return twoSum3(nums, target, i, map)
+      return twoSum3(nums, target, i, map);
     } else {
-      throw 'error: twoSum is not find'
+      throw "error: twoSum is not find";
     }
   }
 };
 
-
 console.log(twoSum3(nums, 9));
 // console.log(twoSum3(nums, 18));
 // console.log(twoSum3(nums, 17));
-

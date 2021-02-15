@@ -1,3 +1,3 @@
 module.exports = {
-  dbPath: 'mongodb://localhost/graphql'
+  dbPath: "mongodb://localhost/graphql",
 };

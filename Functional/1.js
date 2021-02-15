@@ -7,8 +7,8 @@ function func(param) {
   return function (value) {
     count = count + param * value;
     return count;
-  }
-};
+  };
+}
 
 let flag_1 = func(1);
 let flag_2 = func(2);
