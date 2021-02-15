@@ -1,14 +1,167 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Performance optimization</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/a.js"></script>
-  </head>
-  <body>
-    <h1>hello</h1>
+<head>
+  <meta charset="UTF-8" />
+  <title>Performance optimization</title>
+  <!--    <link rel="stylesheet" href="./css/style.css" />-->
+  <!--    <script async src="./js/a.js"></script>-->
+  <meta name="referrer" content="never">
+  <style>
+    img {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<!--
+<div style="background-color: red;width:100px;height:100px;"></div>
+<hr>
 
-    <div id="content"></div>
-  </body>
+<p elementtiming="meaningful">BIO卡洛斯</p>
+
+<hr>
+
+<img width="200" src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" alt="">
+<img width="300"
+     src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.61gequ.com%2Fallimg%2F2012-4%2F201242815595673440.jpg&refer=http%3A%2F%2Fimg.61gequ.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615987805&t=da156c985148deea096d3ac0c6328701"
+     alt="">
+
+<hr>
+
+<label>
+  <input type="text" />
+</label>
+-->
+
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1522460046,2080402546&fm=26&gp=0.jpg" alt=""
+     data-src="https://tiebapic.baidu.com/forum/pic/item/d1160924ab18972b3307d7b2f1cd7b899e510a8d.jpg" width="200">
+<!--
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+
+
+  });
+
+  setTimeout(function() {
+    const {
+      fetchStart, // 开始访问
+      requestStart, // 请求开始
+      responseStart, // 响应开始
+      responseEnd, // 响应结束
+      domInteractive, // DOM可交互的时间点
+      domContentLoadedEventEnd, // DOM整个加载完毕
+      loadEventStart, // 所有资源加载完毕
+      getEntriesByType
+    } = performance.timing;
+
+    const TTFB = responseStart - requestStart; // 首字节返回的时间，服务器处理能力
+    const TTI = domInteractive - fetchStart; // 整个的可交互时长
+    const DCL = domContentLoadedEventEnd - fetchStart; // DOM整个加载完毕
+    const L = loadEventStart - fetchStart; // 所有资源加载完毕所用的时长
+
+    console.log(TTFB, TTI, DCL, L);
+
+    const content = performance.getEntriesByType("paint"); // MDN
+
+    // console.table(content);
+  }, 500);
+
+  //  FMP
+  new PerformanceObserver((entries, observer) => {
+    console.log(entries.getEntries()[0]);
+    observer.disconnect(); // 监听完后结束监听
+  }).observe({ entryTypes: ["element"] });
+
+  //  LCP
+  new PerformanceObserver((entries, observer) => {
+    const entryList = entries.getEntries();
+
+    console.log(entryList[entryList.length - 1], entryList);
+
+    observer.disconnect(); // 监听完后结束监听
+  }).observe({ entryTypes: ["largest-contentful-paint"] });
+
+  //  FID
+  new PerformanceObserver((entries, observer) => {
+    const [firstInput] = entries.getEntries();
+    if(!firstInput) return;
+
+    const FID = firstInput.processingStart - firstInput.startTime;
+    console.log(FID);
+
+    observer.disconnect(); // 监听完后结束监听
+  }).observe({ type: ["first-input"], buffered: true });
+</script>
+-->
+
+<!--<script>
+  function reflow() {
+    const el = document.getElementById("app");
+    const node = document.createElement("h1");
+    node.innerHTML = "Hello";
+    el.appendChild(node);
+  }
+
+  function getOffsetTop() {
+    console.log(app.offsetTop); // 获取位置就会导致 重排 （重新布局）
+  }
+
+  window.addEventListener("load", function() {
+    reflow();
+    setTimeout(function() {
+      for (let i = 0; i < 10; i++) {
+        getOffsetTop();
+      }
+    }, 500);
+  });
+</script>-->
+
+<script>
+  const observer = new IntersectionObserver(function(changes) {
+    changes.forEach(function(item, index) {
+      if (item.intersectionRatio > 0) {
+        observer.unobserve(item.target);
+        item.target.src = item.target.dataset.src;
+      }
+    });
+  });
+
+  function initObserver() {
+    const listItems = document.querySelectorAll("img");
+    listItems.forEach(function(item) {
+      observer.observe(item);
+    });
+  }
+
+  initObserver();
+</script>
+</body>
 </html>
