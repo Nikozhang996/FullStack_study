@@ -1,4 +1,4 @@
-/* 
+/*
 手写一个require，文件模块都是相对路径
 第一步：要解析出一个绝对路径
 第二步：如果文件不存在，添加.js .json .node
@@ -86,5 +86,5 @@ function req(p) {
   }
 }
 
-let test = req("./test.js");
+let test = req("./async.js");
 console.log(test);
