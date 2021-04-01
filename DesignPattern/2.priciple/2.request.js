@@ -46,39 +46,3 @@ function request(url, options) {
    */
   fetch(url, options).then(checkStatus).then(parseJSON).then(checkCode);
 }
-
-request("https://dev.vipthink.net/api_admin.php/api/student/index", {});
-
-/* 
-initPromise
-    .then(res => {
-        console.log(res);
-        return res + 1;
-    })
-    .then(res => {
-        console.log(res);
-        return res + 2;
-    })
-    .then(res => {
-        console.log(res);
-        return res + 3;
-    })
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-
-async function fn() {
-    try {
-        let result = await initPromise;
-
-        console.log(result);
-    } catch (err) {
-        console.log(err);
-    }
-}
-fn();
-
- */
