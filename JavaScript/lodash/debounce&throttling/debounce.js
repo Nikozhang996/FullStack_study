@@ -16,6 +16,7 @@ function debounce(func, wait = 1000, immediate = false) {
     if (wait > passed) {
       timeout = setTimeout(later, wait - passed);
     } else {
+      clearTimeout(timeout);
       timeout = null;
       if (!immediate) func.apply(context, args);
       if (!timeout) args = context = null;
