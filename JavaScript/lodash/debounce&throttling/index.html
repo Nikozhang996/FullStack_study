@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>防抖与节流</title>
     <style>
+      body {
+        background-color: #666;
+      }
       .box {
         width: 100px;
         height: 100px;
-        background-color: black;
+        background-color: #fff;
         border-radius: 50%;
         cursor: pointer;
       }
@@ -22,13 +25,14 @@
     <script src="./throttle.js"></script>
     <script src="./debounce.js"></script>
     <script>
-      const fn = debounce(function () {
+      function logger(e, value = "logger") {
+        console.log(value);
         console.log(this);
-      }, 500);
+        console.log(e);
+      }
 
       const ele = document.querySelector(".box");
-
-      ele.addEventListener("click", fn, false);
+      ele.addEventListener("click", throttle(logger, 1000), false);
     </script>
   </body>
 </html>
