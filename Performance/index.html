@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="UTF-8" />
-  <title>Performance optimization</title>
-  <!--    <link rel="stylesheet" href="./css/style.css" />-->
-  <!--    <script async src="./js/a.js"></script>-->
-  <meta name="referrer" content="never">
-  <style>
-    #box {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background-color: red;
-    }
-  </style>
-</head>
-<body>
-<!--
+  <head>
+    <meta charset="UTF-8" />
+    <title>Performance optimization</title>
+    <!--    <link rel="stylesheet" href="./css/style.css" />-->
+    <!--    <script async src="./js/a.js"></script>-->
+    <meta name="referrer" content="never" />
+    <style>
+      #box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
 <div style="background-color: red;width:100px;height:100px;"></div>
 <hr>
 
@@ -40,12 +40,12 @@
 
 -->
 
-<div id="box"></div>
+    <div id="box"></div>
 
-<script>
-  const element = document.getElementById("box");
+    <script>
+      const element = document.getElementById("box");
 
-  /*
+      /*
   const timer = setInterval(function() {
     element.style.left = element.offsetLeft + 10 + "px";
     if (element.offsetLeft > 600) {
@@ -54,7 +54,7 @@
   }, 10);
   */
 
-  /*let start;
+      /*let start;
 
   function step(timestamp) {
     if (start === undefined) {
@@ -70,45 +70,49 @@
   requestAnimationFrame(step);
   */
 
-  function sleep(d) {
-    for (let t = Date.now(); Date.now() - t <= d;) ;
-  }
+      function sleep(d) {
+        for (let t = Date.now(); Date.now() - t <= d; );
+      }
 
-  const tasks = [
-    () => {
-      console.log("task1");
-      sleep(10);
-    },
-    () => {
-      console.log("task2");
-      sleep(10);
-    },
-    () => {
-      console.log("task3");
-      sleep(10);
-    }
-  ];
+      const tasks = [
+        () => {
+          console.log("task1");
+          sleep(10);
+        },
+        () => {
+          console.log("task2");
+          sleep(10);
+        },
+        () => {
+          console.log("task3");
+          sleep(10);
+        },
+      ];
 
-  requestIdleCallback(taskLoop, { timeout: 1000 });
+      requestIdleCallback(taskLoop, { timeout: 1000 });
 
-  function taskLoop(deadline) {
-    console.log("本帧剩余时间", deadline.timeRemaining());
-    while ((deadline.timeRemaining() > 1 || deadline.didTimeout) && tasks.length > 0) {
-      performUnitOfWork();
-    }
-    if (tasks.length > 0) {
-      console.log(`只剩下${deadline.timeRemaining()}ms,时间片到了等待下次空闲时间的调度`);
-      requestIdleCallback(taskLoop);
-    }
-  }
+      function taskLoop(deadline) {
+        console.log("本帧剩余时间", deadline.timeRemaining());
+        while (
+          (deadline.timeRemaining() > 1 || deadline.didTimeout) &&
+          tasks.length > 0
+        ) {
+          performUnitOfWork();
+        }
+        if (tasks.length > 0) {
+          console.log(
+            `只剩下${deadline.timeRemaining()}ms,时间片到了等待下次空闲时间的调度`
+          );
+          requestIdleCallback(taskLoop);
+        }
+      }
 
-  function performUnitOfWork() {
-    tasks.shift()();
-  }
-</script>
+      function performUnitOfWork() {
+        tasks.shift()();
+      }
+    </script>
 
-
-<!--
+    <!--
 <script>
   window.addEventListener("DOMContentLoaded", function() {
 
@@ -167,7 +171,7 @@
 </script>
 -->
 
-<!--<script>
+    <!--<script>
   function reflow() {
     const el = document.getElementById("app");
     const node = document.createElement("h1");
@@ -189,7 +193,7 @@
   });
 </script>-->
 
-<!--<script>
+    <!--<script>
   const observer = new IntersectionObserver(function(changes) {
     changes.forEach(function(item, index) {
       if (item.intersectionRatio > 0) {
@@ -208,5 +212,5 @@
 
   initObserver();
 </script>-->
-</body>
+  </body>
 </html>

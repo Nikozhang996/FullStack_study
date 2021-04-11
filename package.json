@@ -1,12 +1,5 @@
 {
-  "dependencies": {
-    "apollo-server-koa": "^2.10.0",
-    "koa": "^2.11.0",
-    "koa-bodyparser": "^4.2.1",
-    "koa-router": "^8.0.7",
-    "koa-static": "^5.0.0",
-    "mongoose": "^5.8.11"
-  },
+  "dependencies": {},
   "name": "study-notes",
   "description": "study notes",
   "version": "1.0.0",

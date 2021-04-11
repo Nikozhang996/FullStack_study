@@ -8,7 +8,6 @@ function logCount() {
   console.log(count);
 }
 
-
 function a() {
   b();
 }
@@ -24,6 +23,5 @@ function c() {
 function d() {
   logCount();
 }
-
 
 a();

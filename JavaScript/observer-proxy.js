@@ -1,3 +1,1 @@
-class ObserverProxy {
-
-}
+class ObserverProxy {}

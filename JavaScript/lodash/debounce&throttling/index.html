@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,17 +19,9 @@
   <body>
     <div class="box"></div>
 
+    <script src="./throttle.js"></script>
+    <script src="./debounce.js"></script>
     <script>
-      function debounce(func, timeout) {
-        let timer = null;
-        clearTimeout(timer);
-        return function () {
-          timer = setTimeout(function () {
-            func.apply(this, arguments);
-          }, timeout);
-        };
-      }
-
       const fn = debounce(function () {
         console.log(this);
       }, 500);

@@ -3,4 +3,6 @@ function throttle(func, wait, option) {
   let previous = 0;
   if (!previous && option.leading === false) previous = now;
   const remaining = wait - (now - previous);
+  
+  
 }
