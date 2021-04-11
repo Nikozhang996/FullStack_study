@@ -27,12 +27,12 @@
     <script>
       function logger(e, value = "logger") {
         console.log(value);
-        console.log(this);
-        console.log(e);
       }
 
       const ele = document.querySelector(".box");
       ele.addEventListener("click", throttle(logger, 1000), false);
+
+      window.addEventListener("resize", debounce(logger, 400, true), false);
     </script>
   </body>
 </html>
