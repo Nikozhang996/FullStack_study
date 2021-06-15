@@ -61,7 +61,7 @@ function chineseTranslateInitials(word) {
   }
   return word.toUpperCase();
 }
-function matchAndTrans(value) {
+function matchAndTransString(value) {
   return value.replace(/[\u4e00-\u9fa5]/g, function (item) {
     return chineseTranslateInitials(item);
   });
@@ -69,4 +69,4 @@ function matchAndTrans(value) {
 
 const str = "123物是人非啊abc";
 
-console.log(matchAndTrans(str));
+console.log(matchAndTransString(str));
