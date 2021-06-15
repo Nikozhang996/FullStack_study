@@ -40,4 +40,33 @@ function chineseTranslatePinyin(w) {
   return (cache[w] = pinyin[end]);
 }
 
-console.log(chineseTranslatePinyin("唯品会"));
+function chineseTranslateInitials(word) {
+  if (!String.prototype.localeCompare) return word;
+  if (typeof word !== "string" && word.length > 1) {
+    return word;
+  }
+
+  const zm = "abcdefghjklmnopqrstwxyz_".split("");
+  const zh = "阿吧才的额发嘠好加卡拉吗那哦怕全让撒他哇想呀扎".split("");
+  const len = zh.length;
+  for (let i = 1; i < len; i++) {
+    let r = zh[i].localeCompare(word, "zh");
+    if (r >= 0) {
+      word = zm[i - 1];
+      break;
+    }
+    if (i === len - 1) {
+      word = zm[i];
+    }
+  }
+  return word.toUpperCase();
+}
+function matchAndTrans(value) {
+  return value.replace(/[\u4e00-\u9fa5]/g, function (item) {
+    return chineseTranslateInitials(item);
+  });
+}
+
+const str = "123物是人非啊abc";
+
+console.log(matchAndTrans(str));
