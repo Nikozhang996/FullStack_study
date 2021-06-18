@@ -1,5 +1,4 @@
 {
-  "dependencies": {},
   "name": "study-notes",
   "description": "study notes",
   "version": "1.0.0",
@@ -7,6 +6,7 @@
   "devDependencies": {
     "prettier": "^2.2.1"
   },
+  "dependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
